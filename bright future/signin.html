@@ -93,8 +93,14 @@
         var pane = document.querySelector('.logon__pane');
         var loading = document.querySelector('.logon__loading');
 
-        var CORRECT_PASSWORD = 'bazinga';
+        var CORRECT_PASSWORD = '23b00f3aae2634f1b35057cca336e1950473a1e037d0b405302d988f360f8268';
         var GIST_URL = 'https://gist.githubusercontent.com/Dave-031/2726925e45199d5c8765312327819b78/raw/singlepage.html';
+
+        function hashPassword(password) {
+          return crypto.subtle.digest('SHA-256', new TextEncoder().encode(password)).then(function (hashBuffer) {
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+          });
+        }
 
         function showLoading() {
           if (pane) pane.style.display = 'none';
@@ -133,12 +139,14 @@
           }
         }
 
-        form.addEventListener('submit', function (e) {
+        form.addEventListener('submit', async function (e) {
           e.preventDefault();
 
           if (!passwordInput) return;
 
-          if (passwordInput.value === CORRECT_PASSWORD) {
+          
+          var hash = await hashPassword(passwordInput.value);
+          if (hash === CORRECT_PASSWORD) {
             showLoading();
             // Small delay so the "Logging on. Please wait..." state is visible
             setTimeout(loadGistIntoPage, 700);

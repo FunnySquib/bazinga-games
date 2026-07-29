@@ -270,12 +270,81 @@
 [data-theme="win7"] .icon-recommend  { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k_help.ico'); }
 [data-theme="win7"] .icon-changelogs { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k_default_document.ico'); }
 [data-theme="win7"] .icon-image      { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w98_kodak_imaging_file.ico'); }
+#container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    user-select: none;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  }
+ 
+  .icon {
+    position: absolute;
+    width: 74px;
+    height: 76px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 2px;
+    box-sizing: border-box;
+    cursor: default;
+    border: 1px dotted transparent;
+    outline: none;
+  }
+ 
+  .icon-image {
+    width: 48px;
+    height: 48px;
+  }
+ 
+  .icon-image img {
+    width: 48px;
+    height: 48px;
+    display: block;
+  }
+ 
+  .icon-label {
+    margin-top: 3px;
+    font-size: 11px;
+    line-height: 13px;
+    color: #000;
+    text-align: center;
+    max-width: 70px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding: 1px 2px;
+  }
+ 
+  .icon.selected {
+    background: rgba(50, 130, 220, 0.2);
+    border: 1px dotted rgba(50, 130, 220, 0.8);
+  }
+ 
+  .icon.dragging {
+    opacity: 0.75;
+    z-index: 10;
+  }
     </style>
 </head>
 <body>
+
+<div id="desktop">
   <!-- this is just some code for a pc games im working on  -->
   <!-- errors rn breaks taskbar and wont maximise -->
-  <!--
+  <div id="desktop-icons">
+    <div id="container">
+      <!-- To add/edit icons, just add more of these divs. Change data-label for the text, and data-src for the image. -->
+      <div class="icon-template" data-label="GAMES" data-src=""><span class="icon-games"></span></div>
+      <div class="icon-template" data-label="PC GAMES" data-src=""></div>
+      <div class="icon-template" data-label="SETTINGS" data-src=""></div>
+      <div class="icon-template" data-label="CHANGELOGS" data-src=""></div>
+      <div class="icon-template" data-label="RECOMMEND data-src=""></div>
+      <div class="icon-template" data-label="REPORTS data-src=""></div>
+</div>
+  </div>
+ <!--windows-->
   <div class="window glass active" id="win-pc-games">
     <div class="title-bar">
       <div class="title-bar-text"><span class="win-icon icon-games"></span>PC GAMES</div>
@@ -287,21 +356,60 @@
     </div>
     <div class="window-body has-space">
       <div class="preview-content" style="text-align: center; padding: 20px 15px;">
-        <h1 style="font-size: 26px; margin: 0 0 12px 0; font-weight: bold; color: #000; letter-spacing: 0.5px;">GAMES</h1>
+        <h1 style="font-size: 26px; margin: 0 0 12px 0; font-weight: bold; color: #000; letter-spacing: 0.5px;">PC GAMES</h1>
         <p style="font-size: 14px; color: #222; margin: 0; line-height: 1.4; font-weight: 500;">Double-click the title bar or click the Maximize button [🗖] at the top right to open this window fully.</p>
       </div>
       <div class="full-content" style="padding: 15px;">
-        <h1>Arcade & Retro Directory</h1>
-        <p>Choose your software platform variant:</p>
-        <ul>
-            <li>Action-Adventure RPG v2.1</li>
-            <li>Side-Scrolling Platformer Engine</li>
-            <li>Classic 8-Bit Space Shooters</li>
-        </ul>
+        <style>
+          #gamesandshit img {
+            width: 200px;
+            height: 200px;
+            float: left;
+            border-radius: 15%;
+            }
+          #gamesandshit {
+            display: flex; /* Use flexbox for layout */
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            justify-content: center; /* Center items horizontally */
+            padding: 10px; /* Add padding around the container */
+          }
+        </style>
+    <center>
+        <h1> this only works on computers running windows</h1>
+        <p>unzip the file then open "HOW TO RUN GAME!!.txt"</p>
+        <br>
+        <div id="gamesandshit">
+    <a href="https://is.gd/VtUfB0"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/supermarket.png"></a>
+    <a href="https://is.gd/EqBUkM"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/theif2.png"></a>
+    <a href="https://is.gd/Dl1b6B"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/parkinglot.png"></a>
+    <a href="https://is.gd/pOO72G"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/startupcomp.png"></a>
+    <a href="https://is.gd/z2Fpan"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/stanly.png"></a>
+    <a href="https://is.gd/4NICVp"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/superliminal.png"></a>
+    <a href="https://is.gd/GleDDY"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/youtuberslife.png"></a>
+    <a href="https://is.gd/qsjZnP"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/houseflipper.png"></a>
+    <a href="https://is.gd/d72Bt8"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/randy.png"></a>
+    <a href="https://is.gd/0czi77"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/theif.png"></a>
+    <a href="https://is.gd/t9MiPr"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/hydroneer.png"></a>
+    <a href="https://is.gd/dcQJ4y"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/minecraft.png"></a>
+    <a href="https://is.gd/hCfipR"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/tcgcardshop.png"></a>
+    <a href="https://is.gd/uca5DR"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/stardewvally.png"></a>
+    <a href="https://is.gd/a4FvQg"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/subnautica.png"></a>
+    <a href="https://is.gd/NgHsbM"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/portal.png"></a>
+    <a href="https://is.gd/bYp2IY"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/portal2.png"></a>
+    <a href="https://is.gd/ViKMfw"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/powerwashsim.png"></a>
+    <a href="https://is.gd/AyRalw"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/storeagehunt.png"></a>
+    <a href="https://is.gd/wOHKFp"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/keeptalking.png"></a>
+    <a href="https://is.gd/lGOTdC"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/agadah.png"></a>
+    <a href="https://is.gd/QS5vRZ"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/gassim.png"></a>
+    <a href="https://is.gd/WY1VXl "><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/ss.png"></a>
+    <a href="https://is.gd/8oJjvi "><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/streamlife2.png"></a>
+    </div>
+        <p>i know this looks like shit ill fix it later</p>
+    </center>
       </div>
     </div>
   </div>
--->
+
   <!-- all of the old games are here and the images are streched PLZ FIX -->
   <div class="window glass active" id="win-games">
     <div class="title-bar">
@@ -328,7 +436,6 @@ html {
   padding: 0;
   font-family: Poppins, sans-serif;
   background: #000;
-  color: #f5f5f5;
   overflow-x: hidden;
 }
 
@@ -372,6 +479,7 @@ html {
   font-size: 2.5rem;
   font-weight: 700;
   background: linear-gradient(45deg, #fff, #aaa);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -642,12 +750,12 @@ html {
               <span style="display: block;">Show taskbar clock</span>
               <input id="show-clock-toggle" type="checkbox" checked>
             </label>
-
+            <!--
             <label for="show-cat-toggle" style="display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: bold; cursor: pointer; flex-wrap: nowrap; gap: 25px; margin-top: 10px;">
               <span style="display: block;">Show taskbar cat</span>
               <input id="show-cat-toggle" type="checkbox" checked>
             </label>
-
+          -->
             <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: bold; margin-top: 10px;">
               <span>Cat size scale</span>
               <input id="cat-size-slider" type="range" min="0.5" max="2.5" step="0.1" value="1" style="width: 100px; cursor: pointer;">
@@ -772,7 +880,7 @@ html {
 
       <div id="taskbar-cat" title="Drag me around!"></div>
   </div>
-
+</div>
 <script>
   const taskbarContainer = document.getElementById('taskbar-items-container');
   const reorderBtn = document.getElementById('reorder-btn');
@@ -791,7 +899,7 @@ html {
 }
 
   const wallpapers = {
-      'https://unpkg.com/98.css': "https://cdn.jsdelivr.net/gh/Dave-031/Newdemo@48b6058e4f00e2a3cd6ce93c19e3b31d07422692/images/98_wallpaper.png",
+      'https://unpkg.com/98.css': "https://cdn.jsdelivr.net/gh/Dave-031/Newdemo@4031944321aaa64304138a68f1ee34b452cee8db/images/windows_98-resized.jpg",
       'https://unpkg.com/xp.css': "https://cdn.jsdelivr.net/gh/Dave-031/Newdemo@18303d7b050c223085e4065a091ce377e058be01/images/xp_wallpaper.jpg",
       'https://unpkg.com/7.css': "https://cdn.jsdelivr.net/gh/Dave-031/Newdemo@18303d7b050c223085e4065a091ce377e058be01/images/7_wallpaper.jpg"
   };
@@ -991,13 +1099,14 @@ function updateCatSettings() {
   updateClockVisibility();
   applyTheme(settings.selectedTheme);
   updateCatSettings();
-
+ //added the location for the pc games window
   const defaultPositions = [
       { left: '30px', top: '30px' },    
       { left: '500px', top: '30px' },   
       { left: '30px', top: '380px' },   
       { left: '500px', top: '380px' },  
-      { left: '970px', top: '30px' }
+      { left: '970px', top: '30px' },
+      { left: '970px', top: '380px' }
   ];
 
   const windowsList = document.querySelectorAll('.window');
@@ -1072,7 +1181,7 @@ function updateCatSettings() {
     }
 
     function toggleMaximize() {
-        const allowedWindowIds = ['win-games', 'win-settings', 'win-changelogs'];
+        const allowedWindowIds = ['win-games', 'win-settings', 'win-changelogs', 'win-pc-games'];
         const isAllowed = allowedWindowIds.includes(windowEl.id) || windowEl.id.startsWith('win-uploaded-');
         if (!isAllowed) return;
 
@@ -1093,14 +1202,14 @@ function updateCatSettings() {
     });
 
     windowEl.addEventListener('mousedown', () => bringToFront(windowEl));
-
+    
     // Drag Handling with boundaries
     let isDragging = false;
     let wStartX, wStartY, initialLeft, initialTop;
 
     titleBar.addEventListener('mousedown', (e) => {
       if (e.target.closest('.title-bar-controls')) return;
-
+      
       isDragging = true;
       windowEl.style.zIndex = 999999;
       
@@ -1281,6 +1390,169 @@ function renameActiveImagePanes() {
       e.target.value = '';
   });
 
+
+  function createDesktopIcon(container, options) {
+    options = options || {};
+    const label = options.label || '';
+    const src = options.src || '';
+    const startCol = options.col || 0;
+    const startRow = options.row || 0;
+ 
+    const CELL_W = 75;
+    const CELL_H = 64;
+    const MARGIN = 6;
+ 
+    if (!container._desktopIcons) container._desktopIcons = [];
+    const icons = container._desktopIcons;
+ 
+    const icon = document.createElement('div');
+    icon.className = 'icon';
+    icon.tabIndex = 0;
+    icon.innerHTML =
+      '<div class="icon-image"><img src="' + src + '" alt="" width="48" height="48"></div>' +
+      '<div class="icon-label"></div>';
+    icon.querySelector('.icon-label').textContent = label;
+ 
+    container.appendChild(icon);
+    icons.push(icon);
+ 
+    function cellOf(x, y) {
+      const col = Math.round((x - MARGIN) / CELL_W);
+      const row = Math.round((y - MARGIN) / CELL_H);
+      const maxCol = Math.floor((container.clientWidth - MARGIN - 74) / CELL_W);
+      const maxRow = Math.floor((container.clientHeight - MARGIN - 76) / CELL_H);
+      return {
+        col: Math.min(Math.max(col, 0), Math.max(maxCol, 0)),
+        row: Math.min(Math.max(row, 0), Math.max(maxRow, 0))
+      };
+    }
+ 
+    function cellToPos(col, row) {
+      return { x: MARGIN + col * CELL_W, y: MARGIN + row * CELL_H };
+    }
+ 
+    function isCellTaken(col, row, excludeIcon) {
+      return icons.some(other => {
+        if (other === excludeIcon) return false;
+        const ox = parseFloat(other.style.left);
+        const oy = parseFloat(other.style.top);
+        const oc = cellOf(ox, oy);
+        return oc.col === col && oc.row === row;
+      });
+    }
+ 
+    function nearestFreeCell(col, row, excludeIcon) {
+      if (!isCellTaken(col, row, excludeIcon)) return { col, row };
+ 
+      const maxCol = Math.floor((container.clientWidth - MARGIN - 74) / CELL_W);
+      const maxRow = Math.floor((container.clientHeight - MARGIN - 76) / CELL_H);
+ 
+      for (let radius = 1; radius < maxCol + maxRow + 2; radius++) {
+        for (let dRow = -radius; dRow <= radius; dRow++) {
+          for (let dCol = -radius; dCol <= radius; dCol++) {
+            if (Math.max(Math.abs(dRow), Math.abs(dCol)) !== radius) continue;
+            const c = col + dCol;
+            const r = row + dRow;
+            if (c < 0 || r < 0 || c > maxCol || r > maxRow) continue;
+            if (!isCellTaken(c, r, excludeIcon)) return { col: c, row: r };
+          }
+        }
+      }
+      return { col, row };
+    }
+ 
+    const startFree = nearestFreeCell(startCol, startRow, icon);
+    const initial = cellToPos(startFree.col, startFree.row);
+    icon.style.left = initial.x + 'px';
+    icon.style.top = initial.y + 'px';
+ 
+    let dragState = null;
+ 
+    icon.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      icons.forEach(i => i.classList.remove('selected'));
+      icon.classList.add('selected');
+      icon.focus();
+ 
+      const rect = icon.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+ 
+      dragState = {
+        offsetX: e.clientX - rect.left,
+        offsetY: e.clientY - rect.top,
+        containerRect
+      };
+ 
+      icon.classList.add('dragging');
+    });
+ 
+    document.addEventListener('mousemove', (e) => {
+      if (!dragState) return;
+      const { offsetX, offsetY, containerRect } = dragState;
+ 
+      let x = e.clientX - containerRect.left - offsetX;
+      let y = e.clientY - containerRect.top - offsetY;
+ 
+      x = Math.min(Math.max(x, 0), container.clientWidth - icon.offsetWidth);
+      y = Math.min(Math.max(y, 0), container.clientHeight - icon.offsetHeight);
+ 
+      icon.style.left = x + 'px';
+      icon.style.top = y + 'px';
+    });
+ 
+    document.addEventListener('mouseup', () => {
+      if (!dragState) return;
+      icon.classList.remove('dragging');
+ 
+      const x = parseFloat(icon.style.left);
+      const y = parseFloat(icon.style.top);
+      const target = cellOf(x, y);
+      const free = nearestFreeCell(target.col, target.row, icon);
+      const pos = cellToPos(free.col, free.row);
+ 
+      icon.style.left = pos.x + 'px';
+      icon.style.top = pos.y + 'px';
+ 
+      dragState = null;
+    });
+ 
+    return icon;
+  }
+ 
+  document.addEventListener('mousedown', (e) => {
+    if (e.target.id === 'container') {
+      (e.target._desktopIcons || []).forEach(i => i.classList.remove('selected'));
+    }
+  });
+ 
+  // Auto-build icons from any .icon-template divs found in the HTML above.
+  // Edit data-label and data-src on those divs to change name/icon —
+  // no JavaScript editing required.
+  (function () {
+    const container = document.getElementById('container');
+    const templates = Array.from(container.querySelectorAll('.icon-template'));
+    templates.forEach(t => t.remove());
+    templates.forEach(t => {
+      createDesktopIcon(container, {
+        label: t.dataset.label || '',
+        src: t.dataset.src || ''
+      });
+    });
+  })();
+
+
+
+
+  //make the cat meow
+  var meowMp3 = 'https://cdn.jsdelivr.net/gh/Dave-031/Newdemo@81a482be986021dbd249ac5a809820af70a4a382/cat_anim/meow.mp3'
+  //play a meow
+  function Meow() {
+  const audio = new Audio(meowMp3); // Create a new Audio object
+  audio.play()                       // Start playback
+      .catch(error => {
+          console.error("Playback failed. A user interaction is required first:", error);
+      });
+    }
   // ---- Taskbar cat: animated sprite you can slide left/right along the taskbar ----
   (function setupTaskbarCat() {
       const catEl = document.getElementById('taskbar-cat');
@@ -1290,6 +1562,8 @@ function renameActiveImagePanes() {
       let isDraggingCat = false;
       let dragStartX = 0;
       let catStartLeft = 0;
+
+      
 
       function clampCatLeft(left) {
           const maxLeft = taskbarEl.clientWidth - catEl.offsetWidth;
@@ -1304,6 +1578,7 @@ function renameActiveImagePanes() {
       });
 
       catEl.addEventListener('mousedown', (e) => {
+          Meow()
           isDraggingCat = true;
           dragStartX = e.clientX;
           catStartLeft = catEl.offsetLeft;
@@ -1434,7 +1709,6 @@ function renameActiveImagePanes() {
 
       loadChangelogs();
   })();
-  
 </script>
 </body>
 </html>
