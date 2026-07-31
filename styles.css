@@ -1,0 +1,325 @@
+
+        body {
+            background-image: url("https://cdn.jsdelivr.net/gh/Dave-031/Newdemo@18303d7b050c223085e4065a091ce377e058be01/images/7_wallpaper.jpg");
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100vh;
+            overflow: hidden;
+            transition: background-image 0.2s ease-in-out;
+        }
+        
+        p, h1, h2 {
+            color: black;
+            font-size: 14px;
+        }
+
+        .window {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            user-select: none;
+        }
+
+        .title-bar {
+            cursor: move;
+        }
+
+        .window-body {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        /* Default sizing fallback for standard windows */
+        .window:not(.maximized) {
+            width: 320px !important;
+            height: auto !important;
+        }
+        
+        /* DYNAMIC SIZING FOR REPORTS & RECOMMEND 
+           We lock the width to your preferred 450px, but let the height
+           calculate dynamically (auto) so the larger text never spills over or triggers scrollbars.
+        */
+        #win-reports:not(.maximized), #win-recommends:not(.maximized) {
+            width: 450px !important;
+            height: auto !important;
+        }
+        
+        #win-settings:not(.maximized) {
+            width: 320px !important;
+            height: auto !important;
+        }
+        
+        .window:not(.maximized) .full-content {
+            display: none;
+        }
+        
+        .window:not(.maximized) .preview-content {
+            display: block;
+        }
+
+        /* Only allowed windows (GAMES) will truly scale up using this class */
+        .window.maximized {
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: calc(100vh - 40px) !important;
+            z-index: 99999 !important;
+        }
+
+        .window.maximized .preview-content {
+            display: none;
+        }
+
+        .window.maximized .full-content {
+            display: block;
+        }
+        
+        .window.maximized #changelogs-full-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: #c0c0c0;
+            border-top: 2px solid #fff;
+            box-shadow: inset 0 1px 0 #dfdfdf;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            box-sizing: border-box;
+            gap: 5px;
+            z-index: 999999;
+        }
+
+        #start-btn, #reorder-btn {
+            font-weight: bold;
+            padding: 2px 6px;
+            height: 28px;
+        }
+
+        .field-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .taskbar-tray {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: auto;
+        }
+
+        #taskbar-clock {
+            font-size: 12px;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            color: #000;
+            background: #e0e0e0;
+            border-left: 1px solid #808080;
+            border-top: 1px solid #808080;
+            border-right: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            padding: 4px 8px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 60px;
+            box-sizing: border-box;
+        }
+
+        .upload-tray-btn {
+            font-size: 11px;
+            height: 24px;
+            padding: 0 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .uploaded-img-frame {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            background: #000;
+        }
+
+        /* Lock image panes to 300x300px */
+        div[id^="win-uploaded-"]:not(.maximized) {
+            width: 300px !important;
+            height: 300px !important;
+        }
+
+        div[id^="win-uploaded-"] .window-body {
+            width: auto !important;
+            height: auto !important;
+            padding: 0 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            background: #000 !important;
+        }
+
+/* Force checkbox visibility and alignment across all themes */
+#show-clock-toggle, #show-cat-toggle {
+            position: relative !important;
+            width: 18px !important;
+            height: 18px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            cursor: pointer !important;
+            display: inline-block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            flex-shrink: 0 !important;
+            /* This restores the actual checkmark graphic */
+            -webkit-appearance: auto !important;
+            appearance: auto !important;
+        }
+
+        #show-clock-toggle:checked, #show-cat-toggle:checked {
+            background-color: #fff !important;
+        }
+
+#taskbar-cat {
+            position: absolute;
+            bottom: 36px; /* Locks the cat's feet exactly to the top of the taskbar bevel */
+            left: 180px;
+            width: 64px;
+            height: 64px; /* MATCHES the sprite height perfectly so there's no invisible empty space */
+            background-image: url('https://cdn.jsdelivr.net/gh/Dave-031/Newdemo@e8dbdb9f643ee6364a3794bdd829baf72cdaaad5/cat_anim/Idle.png');
+            background-repeat: no-repeat;
+            background-size: 640px 64px;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+            cursor: grab;
+            z-index: 1000000;
+            animation: taskbar-cat-idle 2.5s steps(10) infinite;
+            transform: scale(var(--cat-scale, 1));
+            transform-origin: bottom center; /* Now scales perfectly from the actual bottom of the feet */
+        }
+
+        #taskbar-cat.dragging {
+            cursor: grabbing;
+        }
+
+        @keyframes taskbar-cat-idle {
+            from { background-position-x: 0px; }
+            to { background-position-x: -640px; }
+        }
+
+/* Container alignment */
+.title-bar-text, .taskbar-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+/* Individual XP Style Icons */
+.win-icon, .taskbar-icon {
+    display: block !important;
+    width: 16px !important;
+    height: 16px !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important; /* Ensures the icon fits perfectly */
+    background-position: center !important;
+    flex-shrink: 0 !important;
+}
+
+/* --- Windows 98 Theme --- */
+[data-theme="win98"] .icon-reports    { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k-documents.ico'); }
+[data-theme="win98"] .icon-settings   { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k-settings.ico'); }
+[data-theme="win98"] .icon-games      { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k-programs.ico'); }
+[data-theme="win98"] .icon-recommend  { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k-help.ico'); }
+[data-theme="win98"] .icon-changelogs { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k-default_document.ico'); }
+[data-theme="win98"] .icon-image      { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w98_kodak_imaging_file.ico'); }
+[data-theme="win98"] .icon-pc-games   { background-image: url('');}
+
+/* --- Windows XP Theme --- */
+[data-theme="winxp"] .icon-reports    { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k_documents.ico'); }
+[data-theme="winxp"] .icon-settings   { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k_control_panel.ico'); }
+[data-theme="winxp"] .icon-games      { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k_programs.ico'); }
+[data-theme="winxp"] .icon-recommend  { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k_help.ico'); }
+[data-theme="winxp"] .icon-changelogs { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k_default_document.ico'); }
+[data-theme="winxp"] .icon-image      { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w98_kodak_imaging_file.ico'); }
+[data-theme="win98"] .icon-pc-games   { background-image: url('');}
+
+/* --- Windows 7 Theme Icons --- */
+[data-theme="win7"] .icon-reports    { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k_documents.ico'); }
+[data-theme="win7"] .icon-games      { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k_programs.ico'); }
+[data-theme="win7"] .icon-settings   { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k_control_panel.ico'); }
+[data-theme="win7"] .icon-recommend  { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k_help.ico'); }
+[data-theme="win7"] .icon-changelogs { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k_default_document.ico'); }
+[data-theme="win7"] .icon-image      { background-image: url('https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w98_kodak_imaging_file.ico'); }
+[data-theme="win98"] .icon-pc-games   { background-image: url('');}
+#container {
+    position: relative;
+    width: 100%;
+    height: 971px;
+    user-select: none;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  }
+ 
+  .icon {
+    position: absolute;
+    width: 74px;
+    height: 76px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 2px;
+    box-sizing: border-box;
+    cursor: default;
+    border: 1px dotted transparent;
+    outline: none;
+  }
+ 
+  .icon-image {
+    width: 48px;
+    height: 48px;
+  }
+ 
+  .icon-image img {
+    width: 48px;
+    height: 48px;
+    display: block;
+  }
+ 
+  .icon-label {
+    margin-top: 3px;
+    font-size: 11px;
+    line-height: 13px;
+    color: #000;
+    text-align: center;
+    max-width: 70px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding: 1px 2px;
+  }
+ 
+  .icon.selected {
+    background: rgba(50, 130, 220, 0.2);
+    border: 1px dotted rgba(50, 130, 220, 0.8);
+  }
+ 
+  .icon.dragging {
+    opacity: 0.75;
+    z-index: 10;
+  }
