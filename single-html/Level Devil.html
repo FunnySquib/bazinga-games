@@ -1,181 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <base href="https://cdn.jsdelivr.net/gh/taha309/LevelDevil@main/">
   <meta charset="utf-8">
   <title>Level Devil</title>
+
+  <!-- Viewport for mobile -->
   <meta id="viewport" name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
-<!-- put this BEFORE loading level-devil.js -->
-<script>
-(function () {
-  // Absolute base URL to your assets folder (must end with /)
-  const ASSET_BASE = "https://raw.githubusercontent.com/Calvin99Cooler/bazinga-games-assets/main/leveldevil/";
-
-  // Helper: decide whether to rewrite a url
-  function shouldRewrite(url) {
-    if (!url || typeof url !== "string") return false;
-    // don't rewrite absolute URLs, protocol-relative, data:, blob:, or javascript:
-    return !/^(https?:)?\/\//i.test(url) && !/^(data|blob|javascript):/i.test(url);
-  }
-  function rewrite(url) {
-    if (!shouldRewrite(url)) return url;
-    // remove any leading "./" or "/" to normalize
-    url = url.replace(/^[.\/]+/, "");
-    return ASSET_BASE + url;
-  }
-
-  // ---- patch fetch ----
-  if (window.fetch) {
-    const _fetch = window.fetch.bind(window);
-    window.fetch = function (input, init) {
-      try {
-        if (typeof input === "string") {
-          input = rewrite(input);
-        } else if (input && input.url) {
-          // Request object — clone with rewritten URL
-          const req = input;
-          const newUrl = rewrite(req.url);
-          if (newUrl !== req.url) {
-            input = new Request(newUrl, {
-              method: req.method,
-              headers: req.headers,
-              body: req.body,
-              mode: req.mode,
-              credentials: req.credentials,
-              cache: req.cache,
-              redirect: req.redirect,
-              referrer: req.referrer,
-              integrity: req.integrity,
-              keepalive: req.keepalive,
-            });
-          }
-        }
-      } catch (e) {
-        console.warn("asset-rewrite: fetch patch failed", e);
-      }
-      return _fetch(input, init);
-    };
-  }
-
-  // ---- patch XMLHttpRequest.open ----
-  (function () {
-    const _open = XMLHttpRequest.prototype.open;
-    XMLHttpRequest.prototype.open = function (method, url /*, async, user, password */) {
-      try {
-        if (typeof url === "string") url = rewrite(url);
-      } catch (e) {
-        console.warn("asset-rewrite: XHR patch failed", e);
-      }
-      return _open.apply(this, [method, url].concat(Array.prototype.slice.call(arguments, 2)));
-    };
-  })();
-
-  // ---- patch Element.setAttribute for src attributes ----
-  (function () {
-    const _setAttr = Element.prototype.setAttribute;
-    Element.prototype.setAttribute = function (name, value) {
-      try {
-        if (name && name.toLowerCase() === "src" && typeof value === "string") {
-          value = rewrite(value);
-        }
-      } catch (e) {
-        console.warn("asset-rewrite: setAttribute patch failed", e);
-      }
-      return _setAttr.call(this, name, value);
-    };
-  })();
-
-  // ---- patch image / media src property setters ----
-  function patchProp(proto, propName) {
-    try {
-      const desc = Object.getOwnPropertyDescriptor(proto, propName);
-      if (!desc) return;
-      const originalSet = desc.set;
-      const originalGet = desc.get;
-      Object.defineProperty(proto, propName, {
-        ...desc,
-        set: function (val) {
-          try {
-            if (typeof val === "string") val = rewrite(val);
-          } catch (e) {
-            console.warn("asset-rewrite: src setter patch failed", e);
-          }
-          if (originalSet) return originalSet.call(this, val);
-        },
-        get: function () {
-          return originalGet ? originalGet.call(this) : undefined;
-        }
-      });
-    } catch (e) {
-      console.warn("asset-rewrite: patchProp error for", propName, e);
-    }
-  }
-
-  patchProp(HTMLImageElement.prototype, "src");
-  patchProp(HTMLAudioElement.prototype, "src");
-  patchProp(HTMLVideoElement.prototype, "src");
-
-  // ---- patch document.createElement to catch some libs that create elements then set .src directly ----
-  (function () {
-    const _create = document.createElement.bind(document);
-    document.createElement = function (tagName, options) {
-      const el = _create(tagName, options);
-      // If someone sets el.src = "foo", the above property patches will apply.
-      // But some libs may call setAttribute directly; our setAttribute override already handles that.
-      return el;
-    };
-  })();
-
-  // Debug: optionally print when rewriting (comment out in production)
-  // console.log("asset-rewrite: active, base:", ASSET_BASE);
-})();
-</script>
-
-  <!-- ✅ Load Poki SDK and game script from GitHub CDN -->
-  <script src="https://cdn.jsdelivr.net/gh/Calvin99Cooler/bazinga-games-assets@main/leveldevil/poki-sdk.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/gh/Calvin99Cooler/bazinga-games-assets@main/leveldevil/level-devil.js" defer></script>
-
-  <script>
-    window.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
-
-    if (typeof window.devicePixelRatio !== 'undefined' && window.devicePixelRatio > 2) {
-      const meta = document.getElementById("viewport");
-      meta.setAttribute('content', 'width=device-width, initial-scale=' + (2 / window.devicePixelRatio) + ', user-scalable=no');
-    }
-
-    // ✅ Define the absolute asset path so the game fetches from GitHub
-    window.ASSET_BASE_URL = "https://raw.githubusercontent.com/Calvin99Cooler/bazinga-games-assets/main/leveldevil/";
-
-    // Hook into lime/app preloader to rewrite paths before loading
-    const originalCreateElement = document.createElement.bind(document);
-    document.createElement = function (tagName) {
-      const element = originalCreateElement(tagName);
-      if (tagName.toLowerCase() === "audio" || tagName.toLowerCase() === "img") {
-        const originalSetAttribute = element.setAttribute.bind(element);
-        element.setAttribute = function (name, value) {
-          if (name === "src" && value && !value.startsWith("http")) {
-            value = window.ASSET_BASE_URL + value;
-          }
-          return originalSetAttribute(name, value);
-        };
-      }
-      return element;
-    };
-
-    // Wait until all scripts are ready before embedding
-    window.addEventListener('load', () => {
-      function tryStart() {
-        if (typeof lime !== 'undefined' && lime.embed) {
-          lime.embed("Level Devil", "openfl-content", 854, 480, { parameters: {} });
-        } else {
-          console.warn("lime not loaded yet, retrying...");
-          setTimeout(tryStart, 500);
-        }
-      }
-      tryStart();
-    });
-  </script>
 
   <style>
     html, body {
@@ -183,24 +16,54 @@
       padding: 0;
       height: 100%;
       overflow: hidden;
-    }
-    #openfl-content {
       background: #000;
+      font-family: sans-serif;
+    }
+
+    #openfl-content {
       width: 100%;
       height: 100%;
-    }
-    #progress {
       position: relative;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50%;
+    }
+
+    #buy-coffee {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #FF813F;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 1000;
+      text-decoration: none;
+    }
+    #buy-coffee:hover {
+      background: #e67333;
     }
   </style>
+
+  <!-- Poki stub -->
+  <script src="poki-sdk.js"></script>
+
+  <!-- Main game build -->
+  <script src="Level Devil.js"></script>
 </head>
 
 <body>
-  <noscript>This webpage makes extensive use of JavaScript. Please enable JavaScript in your web browser to view this page.</noscript>
+  <noscript>
+    This game requires JavaScript. Please enable JavaScript to play.
+  </noscript>
+
+  <!-- Game container -->
   <div id="openfl-content"></div>
+
+  
+  <!-- Embed the game -->
+  <script>
+    lime.embed("Level Devil", "openfl-content", 854, 480, { parameters: {} });
+  </script>
 </body>
 </html>

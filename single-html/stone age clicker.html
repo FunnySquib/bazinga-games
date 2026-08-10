@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stone Age Clicker</title>
+    <base href="https://cdn.jsdelivr.net/gh/FunnySquib/stone-age-clicker@main/">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="css/fontface.css"/>
+    <script type="text/javascript" src="js/utils/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/utils/soundmanager2.js"></script>
+    <script type="text/javascript" src="js/utils/utils.js"></script>
+    <script type="text/javascript" src="js/utils/interpolate.js"></script>
+    <script type="text/javascript" src="js/utils/color.js"></script>
+    <script type="text/javascript" src="js/utils/vector.js"></script>
+    <script type="text/javascript" src="js/utils/img.js"></script>
+    <script type="text/javascript" src="js/utils/pixel_fonts.js"></script>
+    <script type="text/javascript" src="js/utils/sound.js"></script>
+    <script type="text/javascript" src="js/utils/timer_callback.js"></script>
+    <script type="text/javascript" src="js/utils/timer.js"></script>
+    <script type="text/javascript" src="js/utils/mouse.js"></script>
+    <script type="text/javascript" src="js/utils/keyboard.js"></script>
+    <script type="text/javascript" src="js/utils/page_visibility.js"></script>
+    <script type="text/javascript" src="js/utils/fontfaceobserver.js"></script>
+    <script type="text/javascript" src="js/utils/preloader.js"></script>
+    <script type="text/javascript" src="js/utils/preloading_manager.js"></script>
+    <script type="text/javascript" src="js/utils/performance_monitor.js"></script>
+    <script type="text/javascript" src="js/utils/priority_queue.js"></script>
+    <script type="text/javascript" src="js/utils/path_finding.js"></script>
+    <script type="text/javascript" src="js/utils/shaking.js"></script>
+    <script type="text/javascript" src="js/utils/draw_queue.js"></script>
+    <script type="text/javascript" src="js/utils/text.js"></script>
+    <script type="text/javascript" src="js/utils/particle.js"></script>
+    <script type="text/javascript" src="js/utils/particle_system.js"></script>
+    <script type="text/javascript" src="js/particle_drawable.js"></script>
+    <script type="text/javascript" src="js/utils/image_processing.js"></script>
+    <script type="text/javascript" src="js/utils/procedural_generation.js"></script>
+    <script type="text/javascript" src="js/utils/screenfull.min.js"></script>
+    <script type="text/javascript" src="js/resources.js"></script>
+    <script type="text/javascript" src="js/custom_preloading.js"></script>
+    <script type="text/javascript" src="js/loading_state.js"></script>
+    <script type="text/javascript" src="js/ingame_state.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript" src="js/camera.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/panel.js"></script>
+    <script type="text/javascript" src="js/building.js"></script>
+    <script type="text/javascript" src="js/res.js"></script>
+    <script type="text/javascript" src="js/player.js"></script>
+    <script type="text/javascript" src="js/achievements.js"></script>
+    <script type="text/javascript" src="js/construction.js"></script>
+    <script type="text/javascript" src="js/map_generator.js"></script>
+    <script type="text/javascript" src="js/menu_state.js"></script>
+    <script type="text/javascript" src="js/saving.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-62172153-5', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+	<div id="game_box">
+	    <canvas id="game" width="900" height="600">
+	        Your browser doesn't support the &lt;canvas&gt; tag. Please install the newest version of Mozilla Firefox,
+	        Google Chrome or Microsoft Internet Explorer.
+	    </canvas>
+        <div id="paused"><div>Paused</div>Press&nbsp;&nbsp;&nbsp;<span>P</span>&nbsp;&nbsp;to&nbsp;&nbsp;unpause</div>
+        <div id="save_overlay" class="center_outer">
+            <div class="center_middle">
+                <div class="center_inner">
+                    <div id="save_menu">
+                        <a id="open_save_button" class="big_button" href="javascript:void(0);">Save&nbsp;&nbsp;Game</a>
+                        <a id="open_load_button" class="big_button" href="javascript:void(0);">Load&nbsp;&nbsp;Game</a>
+                        <a id="cancel_load_button" class="big_button" href="javascript:void(0);">Cancel</a>
+                    </div>
+                    <div id="save">
+                        <div id="process_desc" class="description">
+                            Generating&nbsp;&nbsp;save&nbsp;&nbsp;code.&nbsp;&nbsp;This&nbsp;&nbsp;can&nbsp;&nbsp;take&nbsp;&nbsp;a&nbsp;&nbsp;few&nbsp;&nbsp;seconds&nbsp;.&nbsp;.&nbsp;.
+                        </div>
+                        <div id="copy_desc" class="description">
+                            Copy&nbsp;&nbsp;the&nbsp;&nbsp;following&nbsp;&nbsp;code&nbsp;&nbsp;into&nbsp;&nbsp;a&nbsp;&nbsp;text&nbsp;&nbsp;file&nbsp;&nbsp;and&nbsp;&nbsp;save&nbsp;&nbsp;the&nbsp;&nbsp;file&nbsp;&nbsp;on&nbsp;&nbsp;your&nbsp;&nbsp;computer.
+                        </div>
+                        <div class="copy_text">
+                            <form>
+                                <textarea id="save_text"></textarea>
+                            </form>
+                        </div>
+                        <a id="done_button" class="button" href="javascript:void(0);">Done</a>
+                    </div>
+                    <div id="load">
+                        <div class="description">
+                            Copy&nbsp;&nbsp;the&nbsp;&nbsp;code&nbsp;&nbsp;of&nbsp;&nbsp;a&nbsp;&nbsp;saved&nbsp;&nbsp;game&nbsp;&nbsp;into&nbsp;&nbsp;the&nbsp;&nbsp;text&nbsp;&nbsp;field&nbsp;&nbsp;below.
+                        </div>
+                        <div class="copy_text">
+                            <form>
+                                <textarea id="load_text"></textarea>
+                            </form>
+                        </div>
+                        <a id="load_button" class="button" href="javascript:void(0);">Load</a>
+                        <a id="cancel_button" class="button" href="javascript:void(0);">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+	    <div id="loading">&nbsp;</div>
+	</div>
+</body>
+</html>

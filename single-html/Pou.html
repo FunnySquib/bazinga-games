@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="https://cdn.jsdelivr.net/gh/PouGame/PouGame.github.io@main/">
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0 minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, shrink-to-fit=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Pou Unblocked</title>
+    <script type="text/javascript">
+    </script>
+    <link rel="icon" type="image/png" href="logo_64.png">
+    <meta property="og:image" content="pou.png" />
+    <!-- For apple devices -->
+    <link rel="apple-touch-icon" type="image/png" href="logo_64.png" />
+    <link rel="stylesheet" href="assets/css/app.css" type="text/css" />
+
+</head>
+
+<body style="overflow:hidden; margin:0; padding:0;">
+  <!-- <script>
+        window.location="https://ubg98.github.io/Pou/";
+    </script>-->
+
+    <div id="content" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"> </div>
+    <div id="orientation"></div>
+
+    <script type="text/javascript">
+        var gtag
+    </script>
+
+    <script type="text/javascript">
+        var libs = [];
+
+
+        var gameName = "pou.min.js";
+
+
+
+
+
+
+        //This all here is for cache busting;
+        function addScript(src, buster, callback) {
+            var s = document.createElement('script');
+            s.setAttribute('src', src + '?v=' + buster);
+            if (typeof callback === 'function') {
+                s.onload = callback;
+            }
+            document.body.appendChild(s);
+        }
+
+
+
+        addScript('version.js', Date.now(), function() {
+
+            addScript(gameName, version, function() {});
+
+
+        });
+    </script>
+    <script src="js/analytics_ubg_v1_4.js"></script>
+    <!-- <script src="js/ubg235_client_v1_1.js"></script> -->
+</body>
+
+</html>

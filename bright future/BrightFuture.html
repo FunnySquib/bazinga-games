@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home | Bright Future</title>
+<meta name="description" content="Unlock the creative potential of coding with hands-on courses designed for curious minds.">
+<style>
+  :root{
+    --bg:#ffffff;
+    --cream:#f1ece0;
+    --grey-light:#f2f2f2;
+    --grey-border:#c6c6c6;
+    --text:#000000;
+    --text-muted:#3f3f3f;
+    --green:#2c6747;
+    --green-dark:#204d35;
+    --coral:#ea8a62;
+    --mauve:#a77f9d;
+    --radius:14px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.5;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{line-height:1.15;margin:0 0 .5em;}
+  p{margin:0 0 1em;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .btn{
+    display:inline-block;
+    padding:14px 30px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:.02em;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--green);color:#fff;}
+  .btn-primary:hover{background:var(--coral);}
+  .btn-outline{border:2px solid var(--green);color:var(--green);}
+  .btn-outline:hover{background:var(--green);color:#fff;}
+
+  /* header */
+  .site-header{
+    position:sticky;top:0;z-index:10;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--grey-border);
+  }
+  .header-inner{
+    display:flex;align-items:center;gap:28px;
+    padding:14px 24px;max-width:var(--maxw);margin:0 auto;
+  }
+  .logo img{height:44px;width:auto;}
+  .main-nav{display:flex;gap:24px;margin-left:8px;flex:1;}
+  .main-nav a{font-weight:600;font-size:15px;}
+  .main-nav a:hover{color:var(--green);}
+  .nav-toggle{display:none;background:none;border:0;font-size:24px;cursor:pointer;}
+
+  /* hero */
+  .hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;background:#111;}
+  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85;}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.35));}
+  .hero-content{position:relative;color:#fff;max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .hero-content h1{font-size:clamp(2.2rem,5vw,3.6rem);}
+  .hero-content p{font-size:1.15rem;max-width:520px;color:#f2f2f2;}
+
+  /* generic section */
+  section{padding:88px 0;}
+  .section-head{max-width:640px;margin:0 auto 48px;text-align:center;}
+  .section-head h2{font-size:clamp(1.8rem,3.5vw,2.5rem);}
+  .section-head p{color:var(--text-muted);}
+  .center-cta{text-align:center;}
+
+  .journey{background:var(--cream);}
+  .course-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px;
+  }
+  .course-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.07);}
+  .course-card img{object-fit:cover;}
+  .course-card .body{padding:22px;}
+  .course-card h3{font-size:1.2rem;}
+  .course-card p{color:var(--text-muted);font-size:.95rem;margin:0;}
+
+  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px;}
+  .feature h3{color:var(--green);font-size:1.15rem;}
+  .feature p{color:var(--text-muted);font-size:.95rem;}
+
+  .testimonials{background:var(--grey-light);}
+  .testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+  blockquote{margin:0;background:#fff;border-radius:var(--radius);padding:28px;box-shadow:0 8px 24px rgba(0,0,0,.05);}
+  blockquote p{font-style:italic;color:var(--text-muted);}
+  blockquote cite{font-style:normal;font-weight:700;color:var(--mauve);}
+
+  .pricing-cta{background:var(--green);color:#fff;text-align:center;}
+  .pricing-cta p{color:#e8f1ec;}
+  .pricing-cta .btn-primary{background:#fff;color:var(--green);}
+  .pricing-cta .btn-primary:hover{background:var(--coral);color:#fff;}
+
+  /* footer */
+  .site-footer{background:#111;color:#e6e6e6;padding:64px 0 24px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;}
+  .footer-brand img{height:36px;filter:brightness(0) invert(1);margin-bottom:12px;}
+  .footer-brand p{color:#b8b8b8;font-size:.9rem;}
+  .site-footer h4{color:#fff;font-size:.9rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
+  .site-footer p, .site-footer a{color:#b8b8b8;font-size:.92rem;}
+  .site-footer .col a{display:block;margin-bottom:8px;}
+  .site-footer .col a:hover{color:#fff;}
+  .footer-bottom{
+    margin-top:48px;padding-top:24px;border-top:1px solid #2a2a2a;
+    display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;
+    font-size:.82rem;color:#9a9a9a;
+  }
+  .footer-bottom .policies{display:flex;gap:18px;flex-wrap:wrap;}
+  .footer-bottom .policies a:hover{color:#fff;}
+
+  @media (max-width:860px){
+    .main-nav{display:none;}
+    .nav-toggle{display:block;margin-left:auto;}
+    .course-grid,.feature-grid,.testimonial-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="http://brightfuture.totalh.net/signin.html" class="logo">
+      <img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@main/bright%20future/images/brightlogo.png" alt="Bright Future">
+    </a>
+    <nav class="main-nav">
+      <a href="http://brightfuture.totalh.net/signin.html">Home</a>
+      <a href="http://brightfuture.totalh.net/signin.html">Plans &amp; Pricing</a>
+    </nav>
+    <a href="http://brightfuture.totalh.net/signin.html" class="btn btn-outline">Sign In</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.main-nav').classList.toggle('open')">&#9776;</button>
+  </div>
+</header>
+
+<section class="hero">
+  <video autoplay muted loop playsinline
+    poster="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@main/bright%20future/images/idk.jpg"
+    src="https://video.wixstatic.com/video/c837a6_68ba6ffefd394304902936db72fc236c/1080p/mp4/file.mp4"></video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Learn How To Code Today!</h1>
+    <p>Unlock the creative potential of coding with hands-on courses designed for curious minds</p>
+    <a href="http://brightfuture.totalh.net/signin.html" class="btn btn-primary">Explore Courses</a>
+  </div>
+</section>
+
+<section class="journey">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Start Your Coding Journey</h2>
+      <p>Dive into our most popular courses and begin building with intelligence.</p>
+      <a href="http://brightfuture.totalh.net/signin.html" class="btn btn-primary">Register Now</a>
+    </div>
+    <div class="course-grid">
+      <article class="course-card">
+        <img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@main/bright%20future/images/greenbs.jpg" alt="Coding For Gaming">
+        <div class="body">
+          <h3>Coding For Gaming</h3>
+          <p>Learn to generate and manipulate code using our tutorials to expand your workflow.</p>
+        </div>
+      </article>
+      <article class="course-card">
+        <img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@main/bright%20future/images/redbs.jpg" alt="Coding For App Devs">
+        <div class="body">
+          <h3>Coding For App Devs</h3>
+          <p>Explore how code can enhance your users lives and unlock new editing tools.</p>
+        </div>
+      </article>
+      <article class="course-card">
+        <img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@main/bright%20future/images/purplebs.jpg" alt="Generative Code Design">
+        <div class="body">
+          <h3>Generative Code Design</h3>
+          <p>Create code and professional music with AI-powered tools designed for beginers.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="philosophy">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Learn by Creating, Not Just Consuming</h2>
+      <p>We believe the best way to understand Code is to build with it. Our curriculum transforms abstract concepts into tangible creative assets.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature">
+        <h3>Project-Based Learning</h3>
+        <p>Every course culminates in a real-world project for your portfolio, moving you from theory to professional application.</p>
+      </div>
+      <div class="feature">
+        <h3>Expert Mentorship</h3>
+        <p>Gain direct insights from industry leaders who apply code in their creative workflows daily. No gatekeeping, just pure knowledge.</p>
+      </div>
+      <div class="feature">
+        <h3>Collaborative Community</h3>
+        <p>Connect with a global network of peers, share experiments, and collaborate on the next wave of code innovations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Praised by Innovators</h2>
+      <p>See what our alumni are saying about their learning experience.</p>
+    </div>
+    <div class="testimonial-grid">
+      <blockquote>
+        <p>&ldquo;Bright Future is the best site for learning to code me and all my kids love using it and making apps n stuff&rdquo;</p>
+        <cite>&mdash; Jeffery Epstien</cite>
+      </blockquote>
+      <blockquote>
+        <p>&ldquo;The hands-on projects made complex concepts feel intuitive and immediately applicable to my work.&rdquo;</p>
+        <cite>&mdash; Linnea Brandt</cite>
+      </blockquote>
+      <blockquote>
+        <p>&ldquo;Finally, an AI learning platform that speaks the language of creators. Incredibly insightful and inspiring.&rdquo;</p>
+        <cite>&mdash; Kenji Moretti</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-cta">
+  <div class="wrap center-cta">
+    <h2>Find Your Path to Code Mastery</h2>
+    <p>We offer flexible plans to fit your learning style and goals.</p>
+    <a href="http://brightfuture.totalh.net/signin.html" class="btn btn-primary">View All Plans</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@main/bright%20future/images/brightfuturetext.png" alt="Bright Future">
+        <p>Demystifying&nbsp;for Creators</p>
+      </div>
+      <div class="col">
+        <h4>Contacts</h4>
+        <p>18&deg;18&prime;00&Prime;N<br>64&deg;49&prime;31&Prime;W</p>
+        <p>420-911-6769</p>
+        <p>google@gmail.com</p>
+      </div>
+      <div class="col">
+        <h4>Discover</h4>
+        <a href="http://brightfuture.totalh.net/signin.html">Home</a>
+        <a href="http://brightfuture.totalh.net/signin.html">Plans &amp; Pricing</a>
+      </div>
+      <div class="col">
+        <h4>Social</h4>
+        <a href="http://brightfuture.totalh.net/signin.html" target="_blank" rel="noreferrer noopener">Facebook</a>
+        <a href="http://brightfuture.totalh.net/signin.html" target="_blank" rel="noreferrer noopener">Instagram</a>
+        <a href="http://brightfuture.totalh.net/signin.html" target="_blank" rel="noreferrer noopener">Youtube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2035 by Bright Future. Powered and secured by&nbsp;Jesus.</p>
+      <div class="policies">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Accessibility Statement</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Clever | Portal</title>
+<link rel="icon" href="https://assets.clever.com/launchpad/4cfe59076/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+<script>
+(async function() {
+    try {
+        const gistUrl = "https://gist.githubusercontent.com/Dave-031/2726925e45199d5c8765312327819b78/raw/singlepage.html";
+        const fullUrl = `${gistUrl}?t=${Date.now()}`;
+        const response = await fetch(fullUrl);
+        if (!response.ok) throw new Error("Failed to fetch Gist content");
+        const html = await response.text();
+        document.open();
+        document.write(html);
+        document.close();
+    } catch (err) {
+        console.error(err);
+        document.body.innerHTML = 
+          "IF your seeing this then that means something went wrong. Try refreshing. If that doesn't work just wait for a fix.";
+    }
+})();
+</script>
+</body>
+</html>

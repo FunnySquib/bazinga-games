@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link id="dynamic-favicon" rel="icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>.close-btn,.dock-btn{background:0 0;cursor:pointer}#announcement,.btn-label{pointer-events:none;opacity:0}.thanks-screen,.widget-header,.widget-name,form{text-align:center}body,html{margin:0;padding:0;font-family:Poppins,sans-serif;background:#000;color:#f5f5f5;overflow-x:hidden}#dock{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;gap:1rem;padding:.75rem 1rem;background:rgba(17,17,17,.6);border-radius:50px;box-shadow:0 8px 32px rgba(0,0,0,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1)}#widget-host{margin-top:100px;padding:1rem;min-height:calc(80vh - 100px)}.view-section{display:none}.view-section.active{display:block}@keyframes rainbow-cycle{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}.rainbow-active{animation:4s linear infinite rainbow-cycle}#announcement{position:fixed;top:90px;right:25px;width:300px;background:rgba(20,20,20,.65);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.15);box-shadow:0 8px 32px 0 rgba(0,0,0,.7);padding:15px;border-radius:18px;color:#fff;flex-direction:column;font-size:.9rem;z-index:9999;transition:opacity .3s,transform .3s;transform:translateY(-10px)}#announcement.show{opacity:1;transform:translateY(0);pointer-events:all;display:flex}.announcement-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.1)}.tag{font-weight:800;font-size:.8rem;text-transform:uppercase;padding:2px 6px;border-radius:4px}.widget-title,form h2{font-weight:700;-webkit-text-fill-color:transparent}.tag.update{color:#0f8;background:rgba(0,255,136,.15);border:1px solid rgba(0,255,136,.3)}.tag.general{color:#0cf;background:rgba(0,204,255,.15);border:1px solid rgba(0,204,255,.3)}.close-btn{border:none;color:#f55;font-size:2rem;line-height:1}.dock-btn-wrapper{position:relative;display:flex;flex-direction:column;align-items:center}.dock-btn{width:48px;height:48px;padding:8px;border-radius:12px;border:none;display:flex;align-items:center;justify-content:center}.dock-btn:hover{background:rgba(255,255,255,.1)}.dock-btn img{width:24px;height:24px}.btn-label{position:absolute;top:100%;margin-top:6px;background:rgba(0,0,0,.8);color:#fff;padding:4px 8px;border-radius:4px;font-size:.75rem;white-space:nowrap}#view-unblock button,.widget-title,form h2,form input[type=submit]{background:linear-gradient(45deg,#fff,#aaa)}.dock-btn-wrapper:hover .btn-label{opacity:1}html.inverted,html.inverted #widget-host img,html.inverted video{filter:invert(1) hue-rotate(180deg)}.widget-header{margin-bottom:1.5rem}.widget-title{font-size:2.5rem;-webkit-background-clip:text}.widget-search,form{background:rgba(255,255,255,.05)}.widget-version{font-size:1.5rem;font-weight:500}.widget-search{width:100%;max-width:500px;margin:0 auto 1.5rem;padding:.75rem 1rem;border-radius:25px;border:1px solid rgba(255,255,255,.2);color:#fff;outline:0;display:block}.widget-card,.widget-img{background:0 0!important}.widget-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem}.widget-card{border-radius:15px;border:2px solid rgba(255,255,255,.1);overflow:hidden;cursor:pointer;display:flex;flex-direction:column;height:220px;transition:transform .3s}.widget-card:hover{transform:translateY(-5px);border:1px solid #948d8d;box-shadow:0 0 10px rgba(255,255,255,.8),0 0 20px rgba(255,255,255,.4);border-radius:15px}.widget-img{width:100%;height:150px;object-fit:contain;display:block}.widget-info{padding:1rem;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.widget-name{font-size:1.1rem;font-weight:500}#widget-global-loader{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,.9);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:99999;color:#fff}.widget-spinner{width:60px;height:60px;border:6px solid rgba(255,255,255,.1);border-radius:50%;border-top-color:#3498db;animation:.8s linear infinite widget-spin;margin-bottom:20px}@keyframes widget-spin{to{transform:rotate(360deg)}}#view-unblock .wrap{max-width:1000px;margin:auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem}#view-unblock .left,#view-unblock .right{display:flex;flex-direction:column;gap:.5rem;flex:1;min-width:280px}#view-unblock button{color:#000;font-weight:600;border:none;padding:.5rem 1.25rem;font-size:1rem;border-radius:25px;cursor:pointer}#view-unblock .indicator{width:16px;height:16px;border-radius:50%;background:#4cff7c}.form-container{width:100%;max-width:410px;margin:auto;display:flex;flex-direction:column;align-items:center;justify-content:center}form{padding:2rem;border-radius:15px;box-sizing:border-box;width:100%}form h2{font-size:1.8rem;-webkit-background-clip:text;margin-bottom:1.5rem}form input[type=text],form textarea{width:100%;padding:.75rem 1rem;margin-bottom:.5rem;border-radius:25px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:#fff;outline:0;box-sizing:border-box}form input[type=submit]{width:100%;padding:.75rem 1rem;border:none;border-radius:25px;color:#000;font-weight:600;cursor:pointer}.setting-row{background:rgba(255,255,255,.05);padding:25px;border-radius:20px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.switch{position:relative;display:inline-block;width:50px;height:26px}.slider,.slider:before{position:absolute;transition:.4s}.switch input{opacity:0;width:0;height:0}.slider{cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#333;border-radius:34px}.slider:before{content:"";height:18px;width:18px;left:4px;bottom:4px;background-color:#fff;border-radius:50%}input:checked+.slider{background-color:#4caf50}input:checked+.slider:before{transform:translateX(24px)}#view-changelogs li::marker{color:#8aa0ff}#view-changelogs .widget-grid{max-width:1800px;margin:0 auto;justify-content:center}.thanks-screen{display:none;flex-direction:column;justify-content:center;align-items:center;padding:2rem;margin:2rem auto}.thanks-screen h2,.thanks-screen h3{white-space:nowrap;margin:10px 0}.thanks-screen h3{font-weight:400;color:#ccc;font-size:1rem}</style>
+  </head>
+  <body>
+    <div id="dock"></div>
+    <div id="widget-global-loader">
+      <div class="widget-spinner"></div>
+      <div id="loader-msg">Fetching Latest Game Data...</div>
+    </div>
+    <div id="announcement">
+      <div class="announcement-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span id="announcement-tag" class="tag"></span>
+          <span style="font-weight:600;">Announcement!</span>
+        </div>
+        <button class="close-btn" id="close-announcement">×</button>
+      </div>
+      <div id="announcement-text">Loading...</div>
+    </div>
+    <div id="widget-host">
+      <section id="view-home" class="view-section active">
+        <div style="text-align:center; padding-top:4rem;">
+          <h1>Home Page</h1>
+          <h2 style="font-weight: 500; color: #ccc;">This is the Bazinga Games homepage. Please use the dock above to navigate.</h2>
+        </div>
+      </section>
+      <section id="view-games" class="view-section">
+        <div class="widget-header">
+          <h1 class="widget-title">Bazinga Games <span id="games-ver" class="widget-version" style="font-size:1rem; margin-left:10px;">...</span>
+          </h1>
+          <input id="game-search" class="widget-search" type="text" placeholder="Search games…">
+        </div>
+        <div id="game-grid" class="widget-grid"></div>
+        <div id="game-empty" style="display:none; text-align:center; color:#888;">No games found</div>
+      </section>
+      <section id="view-unblock" class="view-section">
+        <center>
+          <h1 class="widget-title">Bazinga links <span id="unblock-ver" class="widget-version" style="font-size:1rem; margin-left:10px;">...</span>
+          </h1>
+        </center>
+        <br>
+        <br>
+        <div class="wrap">
+          <div class="left">
+            <h2 style="font-size:1.8rem; background:linear-gradient(45deg,#fff,#aaa); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Bazinga link generator</h2>
+            <button id="gen-btn">Click me for a random working bazinga link</button>
+            <div id="link-display" style="margin-top:1rem;"></div>
+          </div>
+          <div class="right">
+            <div style="display:flex;align-items:center;gap:.5rem;">
+              <div class="indicator"></div>
+              <span id="site-count"></span>
+            </div>
+            <div style="color:#ccc;">These links may be updated regularly.</div>
+          </div>
+        </div>
+      </section>
+      <section id="view-recommend" class="view-section">
+        <br>
+        <br>
+        <div class="form-container">
+          <form id="recommendForm">
+            <h2>Recommend a Game</h2>
+            <label style="display:block; margin-bottom:5px;font-size: 20px;">Game Name:</label>
+            <input type="text" id="rec_game_name" maxlength="20" required>
+            <p style="font-size: 12px; color:#6D6D6D;">Max 20 characters.</p>
+            <br>
+            <label style="display:block; margin-bottom:5px;font-size: 20px;">Why do you want this game?</label>
+            <textarea id="rec_reason" maxlength="80" style="resize:none; height:60px;" required></textarea>
+            <p style="font-size: 12px; color:#6D6D6D;">Max 80 characters.</p>
+            <input type="submit" value="Submit">
+          </form>
+          <center>
+            <div id="rec-thanks" class="thanks-screen">
+              <h2 style="background:linear-gradient(45deg,#fff,#aaa); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Thank you! Your recommendation has been saved.</h2>
+              <h3>If you would like to submit another recommendation, please refresh this page.</h3>
+            </div>
+          </center>
+        </div>
+      </section>
+      <section id="view-report" class="view-section">
+        <br>
+        <br>
+        <div class="form-container">
+          <form id="reportForm">
+            <h2>Report a Broken Game</h2>
+            <label style="display:block; margin-bottom:5px; font-size: 20px;">Game Name:</label>
+            <input type="text" id="rep_game_name" maxlength="20" required>
+            <p style="font-size: 12px; color:#6D6D6D;">Max 20 characters.</p>
+            <input type="submit" value="Submit">
+          </form>
+          <center>
+            <div id="rep-thanks" class="thanks-screen">
+              <h2 style="background:linear-gradient(45deg,#fff,#aaa); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Thank you! Your report has been saved.</h2>
+              <h3>If you would like to submit another report, please refresh this page.</h3>
+            </div>
+          </center>
+        </div>
+      </section>
+      <section id="view-changelogs" class="view-section">
+        <center>
+          <h1 class="widget-title">Changelogs <span id="change-ver" class="widget-version" style="font-size:1rem; margin-left:10px;">...</span>
+          </h1>
+        </center>
+        <input id="change-search" class="widget-search" type="text" placeholder="Search changelogs…" style="margin-top:1rem;">
+        <div id="changelog-grid" class="widget-grid"></div>
+      </section>
+      <section id="view-settings" class="view-section">
+        <center>
+          <h1 class="widget-title">Settings <span id="sett-ver" class="widget-version" style="font-size:1rem; margin-left:10px;">...</span>
+          </h1>
+        </center>
+        <br>
+        <div style="max-width: 500px; margin: 0 auto;">
+          <div class="setting-row">
+            <div>
+              <h3 style="margin:0;">Light Mode</h3>
+              <p style="margin:0; font-size:0.8rem; color:#aaa;">Toggle between dark and light themes</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="invert-toggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div>
+              <h3 style="margin:0;">Rainbow Mode</h3>
+              <p style="margin:0; font-size:0.8rem; color:#aaa;">Just for fun i guess</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="rainbow-toggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+          
+          <div class="setting-row" style="flex-direction:column; align-items:flex-start;">
+            <div style="width:100%; margin-bottom:10px;">
+                <h3 style="margin:0;">Tab Cloak</h3>
+                <p style="margin:0; font-size:0.8rem; color:#aaa;">Customize tab name and icon</p>
+            </div>
+            <input type="text" id="tab-title-input" placeholder="New Tab Name (e.g. Google)" style="width:100%; padding:10px; margin-bottom:10px; border-radius:15px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.05); color:#fff; outline:none; box-sizing: border-box;">
+            <input type="text" id="tab-icon-input" placeholder="New Icon URL" style="width:100%; padding:10px; margin-bottom:10px; border-radius:15px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.05); color:#fff; outline:none; box-sizing: border-box;">
+            <div style="display:flex; gap:10px; width:100%;">
+                <button id="save-tab-btn" style="background:#4CAF50; color:white; border:none; padding:10px 20px; border-radius:12px; cursor:pointer; flex:1;">Apply</button>
+                <button id="reset-tab-btn" style="background:#f55; color:white; border:none; padding:10px 20px; border-radius:12px; cursor:pointer; flex:1;">Reset</button>
+            </div>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <h3 style="margin:0;">Admin Panel</h3>
+              <p style="margin:0; font-size:0.8rem; color:#aaa;">Guess the password if you can</p>
+            </div>
+            <button id="admin-btn" style="background:#4CAF50; color:white; border:none; padding:10px 20px; border-radius:12px; cursor:pointer;">Open</button>
+          </div>
+        </div>
+      </section>
+    </div>
+<script>
+  /* ===== INITIAL SETTINGS & DEFAULTS ===== */
+  const SETTINGS_KEY = "bazinga-settings";
+  const DEFAULT_TAB_NAME = "Clever | Portal";
+  const DEFAULT_TAB_ICON = "https://assets.clever.com/launchpad/4cfe59076/favicon.ico";
+
+  // Load existing settings or create object
+  let settings = JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {};
+
+  // Ensure defaults exist for properties that might be missing
+  if (typeof settings.light === 'undefined') settings.light = false;
+  if (typeof settings.rainbow === 'undefined') settings.rainbow = false;
+  
+  // Apply Defaults for Title/Icon if not set
+  if (!settings.tabName) settings.tabName = DEFAULT_TAB_NAME;
+  if (!settings.tabIcon) settings.tabIcon = DEFAULT_TAB_ICON;
+
+  // IMMEDIATELY APPLY VISUALS
+  if (settings.light) document.documentElement.classList.add('inverted');
+  if (settings.rainbow) document.body.classList.add('rainbow-active');
+  
+  // APPLY TAB CLOAK
+  document.title = settings.tabName;
+  const iconElement = document.getElementById('dynamic-favicon');
+  if(iconElement) {
+    iconElement.href = settings.tabIcon;
+  }
+
+  /* ===== CORE LOGIC & NAVIGATION ===== */
+  const dockItems = [{
+    id: 'view-home',
+    name: 'Home',
+    icon: 'https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@dce6951141ee9b6036a32dbabf45fd30ba4917ca/icons/home.svg'
+  }, {
+    id: 'view-unblock',
+    name: 'Bazinga-Links',
+    icon: 'https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@dce6951141ee9b6036a32dbabf45fd30ba4917ca/icons/unblock.svg'
+  }, {
+    id: 'view-games',
+    name: 'Games',
+    icon: 'https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@160483431226076cf8d3ac097a0cc20429b5ce96/icons/games.svg'
+  }, {
+    id: 'view-recommend',
+    name: 'Recommend',
+    icon: 'https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@160483431226076cf8d3ac097a0cc20429b5ce96/icons/recommend.svg'
+  }, {
+    id: 'view-report',
+    name: 'Report',
+    icon: 'https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@160483431226076cf8d3ac097a0cc20429b5ce96/icons/report-game.svg'
+  }, {
+    id: 'view-changelogs',
+    name: 'Changelogs',
+    icon: 'https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@160483431226076cf8d3ac097a0cc20429b5ce96/icons/changelogs.svg'
+  }, {
+    id: 'view-settings',
+    name: 'Settings',
+    icon: 'https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@dce6951141ee9b6036a32dbabf45fd30ba4917ca/icons/settings.svg'
+  }];
+
+  const ts = () => Date.now();
+
+  async function fetchVersion() {
+    try {
+      const vRes = await fetch(`https://gist.githubusercontent.com/Dave-031/28e04705e41bba73ce058f9f8b4ae75f/raw/version.json?t=${ts()}`);
+      const vData = await vRes.json();
+      ['games-ver', 'unblock-ver', 'change-ver', 'sett-ver'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = `Version: ${vData.version}`;
+      });
+    } catch (e) { console.error("Version fetch failed", e); }
+  }
+
+  function navigate(id) {
+    fetchVersion();
+    if (id === 'view-changelogs') {
+      initChangelogs();
+    }
+    const sections = document.querySelectorAll('.view-section');
+    sections.forEach(s => {
+      if (s.classList.contains('active')) {
+        if (s.id === 'view-recommend' || s.id === 'view-report') {
+          resetForms();
+        }
+      }
+    });
+    document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function resetForms() {
+    document.getElementById('recommendForm').reset();
+    document.getElementById('recommendForm').style.display = 'block';
+    document.getElementById('rec-thanks').style.display = 'none';
+    document.getElementById('reportForm').reset();
+    document.getElementById('reportForm').style.display = 'block';
+    document.getElementById('rep-thanks').style.display = 'none';
+  }
+
+  const dock = document.getElementById('dock');
+  dockItems.forEach(item => {
+    const wrap = document.createElement('div');
+    wrap.className = 'dock-btn-wrapper';
+    wrap.innerHTML = `<button class="dock-btn"><img src="${item.icon}"></button><span class="btn-label">${item.name}</span>`;
+    wrap.onclick = () => navigate(item.id);
+    dock.appendChild(wrap);
+  });
+
+  async function initGlobal() {
+    fetchVersion();
+    try {
+      const aRes = await fetch(`https://gist.githubusercontent.com/Dave-031/2352539685efcde885dbd07575e4f795/raw/announcement.json?t=${ts()}`);
+      const aData = await aRes.json();
+      if (aData.message) {
+        document.getElementById('announcement-tag').textContent = aData.type || "GENERAL";
+        document.getElementById('announcement-tag').className = "tag " + (aData.type === 'UPDATE' ? 'update' : 'general');
+        document.getElementById('announcement-text').innerHTML = aData.message;
+        document.getElementById('announcement').classList.add('show');
+      }
+    } catch (e) {}
+  }
+  document.getElementById('close-announcement').onclick = () => document.getElementById('announcement').classList.remove('show');
+
+  /* ===== GAMES LOGIC ===== */
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        if (!img.src) {
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+        }
+        observer.unobserve(img);
+      }
+    });
+  }, { rootMargin: '150px' });
+
+  let gameData = [];
+  async function initGames() {
+    const grid = document.getElementById('game-grid');
+    const ZONES_URL = 'https://gist.githubusercontent.com/Dave-031/bb96a99fc2db2f13aa07d14802015431/raw/zones.json';
+    const COVER_URL = 'https://cdn.jsdelivr.net/gh/Dave-031/covers@latest/';
+    try {
+      const res = await fetch(`${ZONES_URL}?t=${ts()}`);
+      gameData = await res.json();
+      renderGames(gameData);
+    } catch (e) { console.error(e); }
+
+    function renderGames(arr) {
+      grid.innerHTML = '';
+      arr.forEach(z => {
+        const card = document.createElement('div');
+        card.className = 'widget-card';
+        const cover = z.cover ? (z.cover.includes('{COVER_URL}') ? z.cover.replace('{COVER_URL}', COVER_URL) : z.cover) : '';
+        card.innerHTML = `<img class="widget-img lazy-img" data-src="${cover}"><div class="widget-info"><div class="widget-name">${z.name}</div></div>`;
+        card.onclick = () => launchGame(z);
+        grid.appendChild(card);
+        const img = card.querySelector('.lazy-img');
+        imageObserver.observe(img);
+      });
+    }
+
+    async function launchGame(z) {
+      const loader = document.getElementById('widget-global-loader');
+      loader.style.display = 'flex';
+      try {
+        const freshRes = await fetch(`${ZONES_URL}?t=${ts()}`);
+        const freshData = await freshRes.json();
+        const current = freshData.find(item => item.name === z.name);
+        const commit = (current && current.LatestCommitID) ? current.LatestCommitID : 'main';
+        const finalUrl = `https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@${commit}/single-html/${encodeURIComponent(z.name.trim())}.html`;
+        const gameReq = await fetch(finalUrl);
+        const html = await gameReq.text();
+        const t = window.open('about:blank', '_blank');
+        t.document.write(html);
+        t.document.close();
+      } catch (e) { alert('Failed to load.'); }
+      loader.style.display = 'none';
+    }
+    document.getElementById('game-search').oninput = (e) => {
+      const term = e.target.value.toLowerCase();
+      renderGames(gameData.filter(g => g.name.toLowerCase().includes(term)));
+    };
+  }
+
+  /* ===== UNBLOCKER LOGIC ===== */
+  const unblockLinks = ["https://bazinga.xo.je", "https://bazinga.totalh.net/", "https://bazinga.my-style.in/"];
+  document.getElementById('site-count').textContent = `${unblockLinks.length} Available Links`;
+  document.getElementById('gen-btn').onclick = () => {
+    const url = unblockLinks[Math.floor(Math.random() * unblockLinks.length)];
+    document.getElementById('link-display').innerHTML = `<a href="${url}" target="_blank" style="color:#8aa0ff; background:rgba(255,255,255,.05); padding:0.5rem 1rem; border-radius:15px; border:1px solid rgba(255,255,255,.1); text-decoration:none;">${url}</a>`;
+  };
+
+  /* ===== CHANGELOG LOGIC ===== */
+  async function initChangelogs() {
+    try {
+      const res = await fetch(`https://gist.githubusercontent.com/Dave-031/2137f840bf18a9b43b722f0bacaab332/raw/changelogs.json?t=${ts()}`);
+      const data = await res.json();
+      const grid = document.getElementById('changelog-grid');
+
+      function renderLogs(filter = '') {
+        grid.innerHTML = '';
+        data.forEach(log => {
+          if (!log.version.toLowerCase().includes(filter)) return;
+          const card = document.createElement('div');
+          card.style.cssText = "background:rgba(255,255,255,0.1); border-radius:15px; padding:1rem; border:1px solid rgba(255,255,255,0.1);";
+          card.innerHTML = `<h2 style="background:linear-gradient(45deg,#fff,#aaa); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">${log.version}</h2><p>Date: ${log.date}</p><hr style="opacity:0.1;margin:8px 0;"><ul style="padding-left:1.2em; color:#ccc;">${log.changes.map(c => `<li style="list-style-type: disc; margin-bottom: 5px;">${c}</li>`).join('')}</ul>`;
+          grid.appendChild(card);
+        });
+      }
+      renderLogs();
+      document.getElementById('change-search').oninput = (e) => renderLogs(e.target.value.toLowerCase());
+    } catch (e) { console.error("Changelog fetch failed", e); }
+  }
+
+  /* ===== SETTINGS UI HANDLERS ===== */
+  // Update inputs to match current settings
+  document.getElementById('invert-toggle').checked = settings.light;
+  document.getElementById('rainbow-toggle').checked = settings.rainbow;
+  document.getElementById('tab-title-input').value = settings.tabName;
+  document.getElementById('tab-icon-input').value = settings.tabIcon;
+
+  document.getElementById('invert-toggle').onchange = (e) => {
+    settings.light = e.target.checked;
+    document.documentElement.classList.toggle('inverted', settings.light);
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+  };
+  document.getElementById('rainbow-toggle').onchange = (e) => {
+    settings.rainbow = e.target.checked;
+    document.body.classList.toggle('rainbow-active', settings.rainbow);
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+  };
+  
+  // Tab Cloak Save
+  document.getElementById('save-tab-btn').onclick = () => {
+    const newName = document.getElementById('tab-title-input').value;
+    const newIcon = document.getElementById('tab-icon-input').value;
+    if(newName) {
+        settings.tabName = newName;
+        document.title = newName;
+    }
+    if(newIcon) {
+        settings.tabIcon = newIcon;
+        document.getElementById('dynamic-favicon').href = newIcon;
+    }
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+    alert("Tab cloak settings saved.");
+  };
+
+  // Tab Cloak Reset (Back to Defaults)
+  document.getElementById('reset-tab-btn').onclick = () => {
+    settings.tabName = DEFAULT_TAB_NAME;
+    settings.tabIcon = DEFAULT_TAB_ICON;
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+    location.reload();
+  };
+
+  document.getElementById('admin-btn').onclick = function() {
+      const finalAdminUrl = "https://script.google.com/macros/s/AKfycbwnXtw0eioPpNGCaMOIIEzMLz0FdxQFoVjbq68AaPuRbphcqgD2fFb_sVatHOICzGWhzw/exec";
+      window.open(finalAdminUrl, '_blank', 'noopener,noreferrer');
+    };
+
+  /* ===== SUBMISSIONS ===== */
+  document.getElementById('reportForm').onsubmit = function(e) {
+    e.preventDefault();
+    const gameName = document.getElementById('rep_game_name').value;
+    const baseUrl = "https://script.google.com/macros/s/AKfycbxOE0dgSpqzmQ62nKzXvcqll1hnddlFpEi9Ah6xltenS4uODWC6cFELQYyvTq0WxMi-8Q/exec";
+    const finalUrl = `${baseUrl}?comment=${encodeURIComponent(gameName)}`;
+    document.getElementById('reportForm').style.display = 'none';
+    document.getElementById('rep-thanks').style.display = 'flex';
+    fetch(finalUrl, { mode: 'no-cors' }).catch(err => console.error("Report failed:", err));
+  };
+
+  document.getElementById('recommendForm').onsubmit = function(e) {
+    e.preventDefault();
+    const gameName = document.getElementById('rec_game_name').value;
+    const reason = document.getElementById('rec_reason').value;
+    const baseUrl = "https://script.google.com/macros/s/AKfycbzD8K-Mt7FBrYva3UgyNK5g-JhexTzmA8XnfyQcE0o5_822AyT9nLnakYLULSkRye1_AQ/exec";
+    const combinedComment = `${gameName},${reason}`;
+    const finalUrl = `${baseUrl}?comment=${encodeURIComponent(combinedComment)}`;
+    document.getElementById('recommendForm').style.display = 'none';
+    document.getElementById('rec-thanks').style.display = 'flex';
+    fetch(finalUrl, { mode: 'no-cors' }).catch(err => console.error("Recommendation failed:", err));
+  };
+
+  /* ===== STARTUP ===== */
+  window.onload = () => {
+    if (settings.popup) {
+   
+    }
+    initGlobal();
+    initGames();
+    initChangelogs();
+  };
+</script>
+  </body>
+</html>

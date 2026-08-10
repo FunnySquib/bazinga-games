@@ -1,84 +1,31 @@
-<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,height=device-height,initial-scale=1"><meta name=description content="An unofficial WebAssembly port of the DOOM first-person shooter engine for your browser, with PrBoom+ and PrBoomX enhancements!"><meta name=author content="Gregory Maynard-Hoare"><title>Doom player</title><style>body{background-color:#202020;color:#e0e0e0;font-family:Arial,Helvetica,sans-serif;font-size:16px;margin:0;text-align:center}a{color:inherit}code{font-size:inherit}input,button,select{font-family:inherit;font-size:inherit}select{height:24px}table{border:1px;border-style:dashed}td{padding:2px}.textInfo{margin:8px}.cbCustom{width:16px;height:16px}.headerImage{margin-top:1em;width:100px;height:100px}.noWrapper{white-space:nowrap}#statusContainer{display:none}#modCredit{font-size:14px}figure{overflow:visible}.spinner{height:50px;width:50px;margin:0 auto;-webkit-animation:rotation .8s linear infinite;-moz-animation:rotation .8s linear infinite;-o-animation:rotation .8s linear infinite;animation:rotation .8s linear infinite;border-left:10px solid #606060;border-right:10px solid #606060;border-bottom:10px solid #606060;border-top:10px solid #fff;border-radius:100%;background-color:inherit}progress{width:250px;height:20px}textarea{margin-left:auto;margin-right:auto;font-family:monospace;font-size:14px;color:#ccc;border:1px solid #444;width:calc(100% - 24px);height:calc(100vh - 24px);margin-top:8px;background-color:inherit;resize:none;outline:none;display:none}footer{font-size:10px}canvas{border:0;background-color:#000;width:calc(min(100vw,100vh * 4/3));height:calc(min(100vh,100vw * 0.75));margin-top:calc(0.5 * (100vh - (min(100vh,100vw * 0.75))));margin-left:auto;margin-right:auto;outline:none;display:none}@supports(height:1dvh){textarea{height:calc(100dvh - 24px)}canvas{width:calc(min(100dvw,100dvh * 4/3));height:calc(min(100dvh,100dvw * 0.75));margin-top:calc(0.5 * (100dvh - (min(100dvh,100dvw * 0.75))))}}@-webkit-keyframes rotation{from{-webkit-transform:rotate(0deg)}to{-webkit-transform:rotate(360deg)}}@-moz-keyframes rotation{from{-moz-transform:rotate(0deg)}to{-moz-transform:rotate(360deg)}}@-o-keyframes rotation{from{-o-transform:rotate(0deg)}to{-o-transform:rotate(360deg)}}@keyframes rotation{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}</style><div id=headerContainer class=textInfo><br></div><div id=startContainer class=textInfo> <p><span class=noWrapper><label style="display:none" for=iWADSel>Select:</label>
-<select style="display:none" name=iWADName id=iWADSel>
-<optgroup style="display:none" label="User Supplied"><option value>Custom IWAD</select></span>
-<input style="display:none" type=file id=iWADFile></span><p><label for=patchFiles></label>
-&nbsp;
-<span style="display:none" class=noWrapper><label for=iWADFile></label>
+<!doctype html>
+<html lang="en">
 
-<input style="display:none" type=file id=patchFiles multiple><div id=multiFilesSelected style="display:none"><div style="display:none" id=fileCount style=display:inline-block></div>
-&nbsp;
-<button style="display:none" id=resetButton>Clear</button></div><p><span style="display:none" class=noWrapper><label style="display:none" for=touchCheckBox>Touchscreen-only controls:</label>
-<input type=checkbox id=touchCheckBox name=touchCheckBox class=cbCustom></span>
-&nbsp; &nbsp;
-<a>⬇️  Please look at the controls below  ⬇️<a/>
-<h3>Keyboard Controls</h3><table style=text-align:left;display:inline-block;font-size:14px;margin-top:0><tr><td><code>Esc</code><td>Menu<tr><td>Cursor keys & <code>Return</code><td>Select menu item<tr><td><code>WASD</code><td>Move<tr><td><code>Space</code><td>Use door / switch<tr><td><code>Tab</code><td>Map<tr><td>Left mouse<td>Fire<tr><td>Right mouse<td>Move forward<tr><td>Mouse wheel<td>Change weapon</table><p><label for=ageCheckBox>⬇️ Please click the button below to begin playing ⬇️</label>
-<input style="display:none" type=checkbox id=ageCheckBox name=ageCheckBox class=cbCustom><p><button id=startButton style=width:160px;height:32px;margin-top:6px disabled>Start Doom</button><p id=modCredit><footer style="display:none">Show your support and &#x2B50; <a href=https://github.com/GMH-Code/Dwasm target=_blank>this project on GitHub</a>! | DOOM <a href=license.txt target=_blank>shareware license</a><br>This project is not affiliated with, endorsed by, or in any way connected to id Software, Bethesda Softworks, or ZeniMax Media.<br>All trademarks and copyrights are the property of their respective owners.</footer></div><div id=statusContainer class=textInfo><figure><div class=spinner></div></figure><div id=status>Starting...</div><progress value=0 max=100 id=progress hidden></progress></div><textarea id=output readonly></textarea>
-<canvas id=canvas oncontextmenu=event.preventDefault(); tabindex=-1></canvas>
-<script>
-const headerContainerElement=document.getElementById('headerContainer');const startContainerElement=document.getElementById('startContainer');const statusContainerElement=document.getElementById('statusContainer');const statusElement=document.getElementById('status');const progressElement=document.getElementById('progress');const canvasElement=document.getElementById('canvas');const outputElement=document.getElementById('output');const iWADSel=document.getElementById('iWADSel');const iWADFile=document.getElementById('iWADFile');const patchFiles=document.getElementById('patchFiles');const multiFilesSelectedElement=document.getElementById('multiFilesSelected');const fileCountElement=document.getElementById('fileCount');const resetButton=document.getElementById('resetButton');const touchCheckBox=document.getElementById('touchCheckBox');const ageCheckBox=document.getElementById('ageCheckBox');const startButton=document.getElementById('startButton');const modCredit=document.getElementById('modCredit');let modCreditDict={"hx":"Banjo Software / Rich Johnston (Nostromo)","hy":"Thomas van der Velden","rr":"Matthew Little (Revae) and others"};let getGameLoaded=false;let userFileDict={};
+<head>
+    <base href="https://cdn.jsdelivr.net/gh/donno2048/webdoom@master/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>DOOM</title>
+    <script src="js-dos.js"></script>
+</head>
 
-// ---  NEW: Auto preload doom1.wad from URL ---
-async function preloadWADFromURL(url, filename="doom1.wad") {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("WAD fetch failed");
-        const buffer = await response.arrayBuffer();
-        const data = new Uint8Array(buffer);
-        userFileDict[filename.toLowerCase()] = ['i', data]; // 'i' = IWAD
-        console.log("Auto-loaded WAD from URL:", filename);
-        updateFileCount();
-        disableInputs();
-        //  Auto-check the checkbox after WAD loads
-        ageCheckBox.checked = true;
-        disableInputs();
-    } catch (err) {
-        console.error("Error auto-fetching WAD:", err);
-    }
-}
+<body>
+    <center>
+        <canvas></canvas>
+        <br />
+        <button onclick="ci.fullscreen()" style="visibility: hidden;">Fullscreen</button>
+    </center>
+    <script>
+        Dos(document.getElementsByTagName("canvas")[0], { autolock: true }).ready((fs, main) => {
+            fs.extract("DOOM.ZIP").then(() => {
+                main(["-c", "DOOM"]).then((ci) => {
+                    window.ci = ci;
+                    document.getElementsByTagName("button")[0].style.visibility = 'initial';
+                    document.title = "DOOM";
+                })
+            });
+        });
+    </script>
+</body>
 
-window.addEventListener("load", () => {
-    preloadWADFromURL("https://raw.githubusercontent.com/Calvin99Cooler/shush/refs/heads/main/doom1.wad");
-    // Ensure checkbox is auto-checked on load even if fetch is slow
-    ageCheckBox.checked = true;
-    disableInputs();
-});
-// --- End of new code ---
-
-var Module={_canLockPointer:true,_depsLastLeft:0,_depsDone:0,_depsTotal:0,canvas:(function(){canvasElement.addEventListener('webglcontextlost',function(e){e.preventDefault();alert('WebGL context lost.  Please reload the page!');},false);return canvasElement;})(),print:(function(){return function(text){console.log(text);_printText(text);};})(),printErr:(function(){return function(text){console.error(text);_printText('(!) '+text);};})(),setStatus:function(text){if(!Module.setStatus.last){Module.setStatus.last={time:Date.now(),text:''};}
-if(text===Module.setStatus.last.text)
-return;const m=text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);if(m){var now=Date.now();if(m&&now-Module.setStatus.last.time<16.67)
-return;Module.setStatus.last.time=now;Module.setStatus.last.text=text;const from=parseInt(m[2]);const to=parseInt(m[4]);text=m[1]+'<br>('+(from/1024).toFixed(0)+'KiB of '+(to/1024).toFixed(0)+'KiB)';progressElement.value=parseInt(m[2]);progressElement.max=parseInt(m[4]);progressElement.hidden=false;}else{progressElement.value=null;progressElement.max=null;progressElement.hidden=true;}
-statusElement.innerHTML=text;},onRuntimeInitialized:function(){for(let userFilename in userFileDict){const userFileData=userFileDict[userFilename][1];const userFileSize=userFileData.length;console.info('Writing to MemFS: '+userFilename+' ('+userFileSize+' bytes)');const userDestFile=FS.open('/'+userFilename,'w');FS.write(userDestFile,userFileData,0,userFileSize,0);FS.close(userDestFile);}
-this.showConsole();this.setStatus('');resetUserFiles();headerContainerElement.style.display='none';statusContainerElement.style.display='none';},monitorRunDependencies:function(left){let depsDiff=Module._depsLastLeft-left;if(depsDiff!==0){if(depsDiff>0)
-Module._depsDone+=depsDiff;else
-Module._depsTotal-=depsDiff;Module._depsLastLeft=left;Module.setStatus('Preparing dependencies...<br>('+Module._depsDone+' done, '+Module._depsTotal+' found)');}},hideConsole:function(){if(touchCheckBox.checked)
-olyOn();outputElement.style.display='none';canvasElement.style.display='block';canvasElement.focus();},showConsole:function(){if(touchCheckBox.checked)
-olyOff();canvasElement.style.display='none';outputElement.style.display='block';outputElement.scrollTop=outputElement.scrollHeight;outputElement.focus();},captureMouse:function(){if(!touchCheckBox.checked&&Module._canLockPointer&&!Module._attemptPointerLock()){Module._canLockPointer=false;console.info('Delayed pointer lock requested.');document.addEventListener('keydown',Module._lockPointerOnKey);}},winResized:function(){console.info("Detected window resize: "+canvasElement.width+"x"+canvasElement.height);let dVW,dVH,aspX,aspY;if(window.CSS.supports('height','1dvh')){dVW='100dvw';dVH='100dvh';}else{dVW='100vw';dVH='100vh';}
-aspX=canvasElement.width+' / '+canvasElement.height;aspY=canvasElement.height+' / '+canvasElement.width;canvasElement.style.width='calc(min('+dVW+', '+dVH+' * '+aspX+'))';canvasElement.style.height='calc(min('+dVH+', '+dVW+' * '+aspY+'))';canvasElement.style.marginTop='calc(0.5 * ('+dVH+' - (min('+dVH+', '+dVW+' * '+aspY+'))))';},_attemptPointerLock:function(){if(document.pointerLockElement===null){canvasElement.requestPointerLock();}
-return document.pointerLockElement!==null;},_lockPointerOnKey:function(event){if((event.key==='Escape')||Module._attemptPointerLock()){document.removeEventListener('keydown',Module._lockPointerOnKey);console.info('Delayed pointer lock complete.');Module._canLockPointer=true;}},arguments:window.location.search.length>1?window.location.search.substr(1).split('&'):[]}
-function _printText(text){outputElement.value+=text+'\n';if(outputElement.value.length>2097152)
-outputElement.value=outputElement.value.slice(-1048576);outputElement.scrollTop=outputElement.scrollHeight;}
-function disableInputs(forceDisable=false){const noUserIWADs=(iWADFile.files.length<1 && Object.keys(userFileDict).length<1)
-iWADSel.disabled=forceDisable;iWADFile.disabled=forceDisable||iWADSel.value!=='';patchFiles.disabled=forceDisable||iWADSel.value==='sw'||(iWADSel.value===''&&noUserIWADs);resetButton.disabled=forceDisable;touchCheckBox.disabled=forceDisable;ageCheckBox.disabled=forceDisable;startButton.disabled=forceDisable||(!ageCheckBox.checked)||(iWADSel.value===''&&noUserIWADs);}
-function updateFileCount(){const userFileDictLength=Object.keys(userFileDict).length;fileCountElement.innerHTML=userFileDictLength+' file'+(userFileDictLength===1?'':'s')+' total.';multiFilesSelectedElement.style.display=userFileDictLength===0?'none':'inline-block';}
-function resetUserFiles(){iWADFile.value=null;patchFiles.value=null;userFileDict={};updateFileCount();}
-function saveSettings(){localStorage.setItem(iWADSel.id,iWADSel.value);localStorage.setItem(touchCheckBox.id,touchCheckBox.checked?'1':'0');}
-function loadSettings(){const iWADSelState=localStorage.getItem(iWADSel.id);if(iWADSelState!=null)
-iWADSel.value=iWADSelState;const touchState=localStorage.getItem(touchCheckBox.id);if(touchState===null)
-touchCheckBox.checked=(('maxTouchPoints'in navigator)&&(navigator.maxTouchPoints>1)&&(navigator.maxTouchPoints<256));else
-touchCheckBox.checked=touchState==='1';}
-function updateModCredit(){const modText=modCreditDict[iWADSel.value];modCredit.innerHTML=modText?"<em>"+iWADSel.options[iWADSel.selectedIndex].text+"</em> mod by "+modText+".":"";}
-resetButton.addEventListener('click',function(){resetUserFiles();disableInputs();});async function addFilesToUserFileDict(fileElement,isIWAD){disableInputs(true);document.documentElement.style.cursor='wait';const userFiles=fileElement.files;for(let userFileNum=0;userFileNum<userFiles.length;userFileNum++){const userFile=userFiles[userFileNum];const userFilename=userFile.name.toLowerCase();const userArray=await userFile.arrayBuffer();const userData=new Uint8Array(userArray);let userType=''
-if(isIWAD){userType='i';}else{if(userFilename.includes('.')){const userExt=userFilename.split('.').pop();if(userExt==='wad'){userType='p';}else if(userExt==='deh'||userExt==='bex'){userType='d';}}}
-userFileDict[userFilename]=[userType,userData];}
-updateFileCount();disableInputs();document.documentElement.style.cursor='auto';}
-iWADSel.addEventListener('change',function(){resetUserFiles();disableInputs();updateModCredit();});iWADFile.addEventListener('change',function(){patchFiles.value=null;userFileDict={};addFilesToUserFileDict(iWADFile,true);});patchFiles.addEventListener('change',function(){addFilesToUserFileDict(patchFiles,false);});startButton.addEventListener('click',function(){saveSettings();disableInputs(true);startContainerElement.style.display='none';statusContainerElement.style.display='block';if(iWADSel.value===''){startGame();}else{Module.setStatus('Preparing download...');if(getGameLoaded){callGetGame();}else{const dlScript=document.createElement('script');dlScript.src='getgame.js';dlScript.type='module';dlScript.onload=callGetGame;dlScript.onerror=wadDLFail;document.body.appendChild(dlScript);}}});function callGetGame(){getGameLoaded=true;Window.dGetGame(iWADSel.value,Module.setStatus,wadDLReady);}
-ageCheckBox.addEventListener('change',function(){disableInputs();});function wadDLReady(wadDLDict){if(Object.keys(wadDLDict).length<1){wadDLFail();}else{userFileDict=Object.assign({},wadDLDict,userFileDict);startGame();}};function wadDLFail(){disableInputs();statusContainerElement.style.display='none';startContainerElement.style.display='block';window.alert('Unable to fetch or extract archive. Please choose or supply another IWAD.');}
-function startGame(){ageCheckBox.checked=false;window.scrollTo(0,0);let module_arguments=[];let foundIWAD=null;let foundPWADs=[];let foundDEHs=[];for(let userFilename in userFileDict){const userFileType=userFileDict[userFilename][0];if(userFileType==='i'){foundIWAD=userFilename;}else if(userFileType==='p'){foundPWADs.push(userFilename);}else if(userFileType==='d'){foundDEHs.push(userFilename);}}
-if(foundIWAD!==null){module_arguments=module_arguments.concat(['-iwad',foundIWAD]);}
-if(foundPWADs.length>0)
-module_arguments=module_arguments.concat(['-file']).concat(foundPWADs);if(foundDEHs.length>0)
-module_arguments=module_arguments.concat(['-deh']).concat(foundDEHs);console.info('Launching with arguments: '+module_arguments);Module.arguments=Module.arguments.concat(module_arguments);const script=document.createElement('script');script.src='https://cdn.jsdelivr.net/gh/Calvin99Cooler/bazinga-games-assets@latest/doom/index.js';script.async=true;document.body.appendChild(script);}
-loadSettings();updateFileCount();disableInputs();updateModCredit();
-</script>
-
+</html>

@@ -1,173 +1,212 @@
 <!DOCTYPE html>
+
+
+<!-- Ultimate Game Stash file--> 
+<!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->
+
+
+
 <html lang="en-us">
+<base href="https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/get%20yoked/">
 <head>
-<meta charset="utf-8">
-<title>Get Yoked</title>
-<base href="https://cdn.jsdelivr.net/gh/Calvin99Cooler/bazinga-games-assets@main/get-yoked/">
-<link rel="shortcut icon" href="TemplateData/favicon.ico">
-<link rel="stylesheet" href="TemplateData/style.css">
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-    background: #000;
-    font-family: sans-serif;
-  }
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>game :D</title>
+  <style>
+    html, body {
+      background: #000;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      padding: 0;
+      margin: 0;
+    }
 
-  #unity-container {
-    width: 960px;
-    height: 600px;
-    margin: 20px auto;
-    position: relative;
-    background: #000;
-    border: 1px solid #222;
-  }
+    #gameContainer {
+      background: transparent !important;
+      position: absolute;
+    }
 
-  #unity-canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-    background: #000;
-    position: relative;
-    z-index: 2; /* initial z-index during loading */
-  }
+    #gameContainer canvas {
+      position: absolute;
+    }
 
-  #unity-loading-bar {
-    width: 100%;
-    height: 4px;
-    background: #222;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 3;
-  }
+    #gameContainer canvas[data-pixel-art="true"] {
+      image-rendering: optimizeSpeed;
+      image-rendering: -webkit-crisp-edges;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -o-crisp-edges;
+      image-rendering: crisp-edges;
+      image-rendering: pixelated;
+      -ms-interpolation-mode: nearest-neighbor;
+    }
 
-  #unity-progress-bar-full {
-    width: 0%;
-    height: 100%;
-    background: #4caf50;
-    transition: width 0.2s;
-  }
-
-  /* Loading overlay */
-  #loading-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    z-index: 4; /* on top during loading */
-  }
-
-  #loading-overlay span {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #aaa;
-  }
-
-  /* Fullscreen button below canvas */
-  #fullscreen-btn {
-    display: block;
-    margin: 10px auto 0 auto;
-    padding: 5px 15px;
-    background: #222;
-    color: #fff;
-    border: 1px solid #4caf50;
-    cursor: pointer;
-    font-size: 16px;
-  }
-
-  #fullscreen-btn:hover {
-    background: #4caf50;
-    color: #000;
-  }
-</style>
+    #loading-text {
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 1em;
+    }
+  </style>
 </head>
+
 <body>
-<div id="unity-container">
-  <canvas id="unity-canvas" tabindex="-1"></canvas>
-  <div id="unity-loading-bar">
-    <div id="unity-progress-bar-full"></div>
+  <div id="gameContainer">
+    <canvas id="unity-canvas" data-pixel-art></canvas>
+    <div id="loading-text">LOADING...</div>
   </div>
-  <div id="loading-overlay">
-    Loading GET YOKED...
-    <span>Please wait while the game loads</span>
-  </div>
-</div>
 
-<button id="fullscreen-btn">Fullscreen</button>
+  <script src="Build/Web.loader.js"></script>
+  <script>
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      const meta = document.createElement('meta');
+      meta.name = 'viewport';
+      meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+      document.head.appendChild(meta);
+    }
 
-<script>
-const canvas = document.getElementById("unity-canvas");
-const progressBarFull = document.getElementById("unity-progress-bar-full");
-const overlay = document.getElementById("loading-overlay");
-const fullscreenBtn = document.getElementById("fullscreen-btn");
+    const loadingText = document.querySelector("#loading-text");
+    let totalBytes = 0;
+    let loadedBytes = 0;
 
-// Redirect Unity banner errors to console only
-function unityShowBanner(msg, type) {
-  if(type === "error") console.error("[Unity ERROR]", msg);
-  else console.warn("[Unity WARNING]", msg);
-}
+    function formatSize(bytes) {
+      if (bytes > 1024 * 1024 * 1024) return (bytes / (1024 * 1024 * 1024)).toFixed(2) + " GB";
+      if (bytes > 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+      if (bytes > 1024) return (bytes / 1024).toFixed(2) + " KB";
+      return bytes + " B";
+    }
 
-// Base URL for relative Unity assets
-const baseUrl = "https://cdn.jsdelivr.net/gh/Calvin99Cooler/bazinga-games-assets@main/get-yoked/";
-
-function resolveUrl(url) {
-  return /^(https?:)?\/\//i.test(url) ? url : baseUrl + url;
-}
-
-const config = {
-  dataUrl: resolveUrl("https://raw.githubusercontent.com/Calvin99Cooler/bazinga-games-assets/refs/heads/main/get-yoked/Build/Web.data"),
-  frameworkUrl: resolveUrl("Build/Web.framework.js"),
-  codeUrl: resolveUrl("https://raw.githubusercontent.com/Calvin99Cooler/bazinga-games-assets/refs/heads/main/get-yoked/Build/Web.wasm"),
-  streamingAssetsUrl: resolveUrl("StreamingAssets"),
-  companyName: "Barking Dogs",
-  productName: "GET YOKED",
-  productVersion: "0.3.3",
-  showBanner: unityShowBanner
-};
-
-// Canvas size for embedded mode
-canvas.style.width = "100%";
-canvas.style.height = "100%";
-
-// Show loading bar
-document.querySelector("#unity-loading-bar").style.display = "block";
-
-// Load Unity loader script
-const loaderScript = document.createElement("script");
-loaderScript.src = resolveUrl("Build/Web.loader.js");
-loaderScript.onload = () => {
-  createUnityInstance(canvas, config, (progress) => {
-    progressBarFull.style.width = `${100*progress}%`;
-  }).then((unityInstance) => {
-    // Fully hide overlay after game loads
-    overlay.style.display = "none";
-
-    // Increase canvas z-index to sit above everything else
-    canvas.style.zIndex = 10;
-
-    // Fullscreen button functionality
-    fullscreenBtn.onclick = () => {
-      if (document.fullscreenElement) {
-        document.exitFullscreen();
-      } else {
-        document.getElementById("unity-container").requestFullscreen();
+    async function getSize(url) {
+      try {
+        const res = await fetch(url, { method: "HEAD" });
+        return parseInt(res.headers.get("Content-Length") || "0", 10);
+      } catch {
+        return 0;
       }
-    };
-  }).catch((err) => console.error("[Unity Error]", err));
-};
+    }
 
-document.body.appendChild(loaderScript);
-</script>
+    async function fetchPart(url) {
+      const response = await fetch(url);
+      if (!response.body) {
+        const ab = await response.arrayBuffer();
+        loadedBytes += ab.byteLength;
+        loadingText.textContent = `LOADING... ${formatSize(loadedBytes)} / ${formatSize(totalBytes)}`;
+        return new Uint8Array(ab);
+      }
+      const reader = response.body.getReader();
+      const chunks = [];
+      let received = 0;
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        received += value.length;
+        loadedBytes += value.length;
+        chunks.push(value);
+        const percent = totalBytes > 0 ? ((loadedBytes / totalBytes) * 100).toFixed(1) : "?";
+        loadingText.textContent = `LOADING... ${formatSize(loadedBytes)} / ${formatSize(totalBytes)} (${percent}%)`;
+      }
+      const full = new Uint8Array(received);
+      let offset = 0;
+      for (let chunk of chunks) {
+        full.set(chunk, offset);
+        offset += chunk.length;
+      }
+      return full;
+    }
+
+    async function mergeParts(parts, mimeType) {
+      const buffers = await Promise.all(parts.map(fetchPart));
+      const totalLen = buffers.reduce((s, b) => s + b.length, 0);
+      const concatenated = new Uint8Array(totalLen);
+      let off = 0;
+      for (let b of buffers) {
+        concatenated.set(b, off);
+        off += b.length;
+      }
+      return URL.createObjectURL(new Blob([concatenated], { type: mimeType || undefined }));
+    }
+
+    function getParts(file, count) {
+      const parts = [];
+      for (let i = 1; i <= count; i++) parts.push(file + ".part" + i);
+      return parts;
+    }
+
+    (async () => {
+      try {
+        const dataParts = getParts("Build/Web.data", 2);
+        const wasmParts = getParts("Build/Web.wasm", 3);
+        const allParts = [...dataParts, ...wasmParts, "Build/Web.framework.js"];
+        const sizes = await Promise.all(allParts.map(getSize));
+        totalBytes = sizes.reduce((a, b) => a + b, 0);
+
+        const [dataUrl, wasmUrl, frameworkUrl] = await Promise.all([
+          mergeParts(dataParts),
+          mergeParts(wasmParts),
+          mergeParts(["Build/Web.framework.js"], 'application/javascript')
+        ]);
+
+        const canvas = document.querySelector("#unity-canvas");
+        let scaleToFit = true;
+
+        function onResize() {
+          const container = canvas.parentElement;
+          let w, h;
+          if (scaleToFit) {
+            w = window.innerWidth;
+            h = window.innerHeight;
+            const r = 540 / 960;
+            if (w * r > window.innerHeight) w = Math.min(w, Math.ceil(h / r));
+            h = Math.floor(w * r);
+          } else {
+            w = 960;
+            h = 540;
+          }
+          container.style.width = canvas.style.width = w + "px";
+          container.style.height = canvas.style.height = h + "px";
+          container.style.top = Math.floor((window.innerHeight - h) / 2) + "px";
+          container.style.left = Math.floor((window.innerWidth - w) / 2) + "px";
+        }
+        window.addEventListener('resize', onResize);
+        onResize();
+
+        // Wait until Unity loader is available
+        await (async function waitForLoader() {
+          if (typeof createUnityInstance === 'function') return;
+          await new Promise(resolve => {
+            const check = setInterval(() => {
+              if (typeof createUnityInstance === 'function') {
+                clearInterval(check);
+                resolve();
+              }
+            }, 50);
+          });
+        })();
+
+        const config = {
+          dataUrl: dataUrl,
+          frameworkUrl: frameworkUrl,
+          codeUrl: wasmUrl,
+          streamingAssetsUrl: "https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/get%20yoked/StreamingAssets",
+          companyName: "",
+          productName: "",
+          productVersion: ""
+        };
+
+        createUnityInstance(canvas, config, (progress) => {
+          const percent = Math.round(progress * 100);
+          loadingText.textContent = `LOADING... ${percent}%`;
+        }).then((unityInstance) => {
+          loadingText.remove();
+        }).catch((message) => {
+          loadingText.textContent = 'Failed to start Unity: ' + message;
+          console.error(message);
+        });
+      } catch (err) {
+        loadingText.textContent = 'ERROR: ' + (err.message || err);
+        console.error(err);
+      }
+    })();
+  </script>
 </body>
 </html>

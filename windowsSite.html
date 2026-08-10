@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Station - Interactive Multi-Window Hub</title>
+    <link id="theme-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Dave-031/Newdemo@32af2b5554172ed0694716e07d049b8de7c623f2/themes/7_theme.css">
+    <link rel="icon" type="image/x-icon" href="https://64.media.tumblr.com/338b84acf3491001241d1cadf54a99c1/742a58dac3bc91cf-79/s75x75_c1/db3914648ceb52508cfaadc2b6d0dedcc1bbedd1.gifv">
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+
+<div id="desktop">
+  <!-- this is just some code for a pc games im working on  -->
+  <!-- errors rn breaks taskbar and wont maximise -->
+  <div id="desktop-icons">
+    <div id="container">
+      <!-- To add/edit icons, just add more of these divs. Change data-label for the text, and data-src for the image. -->
+      <div class="icon-template" data-label="GAMES" data-src=""><span class="icon-games"></span></div>
+      <div class="icon-template" data-label="PC GAMES" data-src=""></div>
+      <div class="icon-template" data-label="SETTINGS" data-src="https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k-settings.ico"></div>
+      <div class="icon-template" data-label="CHANGELOGS" data-src=""></div>
+      <div class="icon-template" data-label="RECOMMEND" data-src=""></div>
+      <div class="icon-template" data-label="REPORTS" data-src="https://cdn.jsdelivr.net/gh/trapd00r/win95-winxp_icons@master/icons/w2k-documents.ico"></div>
+</div>
+  </div>
+ <!--windows-->
+  <div class="window glass active" id="win-pc-games">
+    <div class="title-bar">
+      <div class="title-bar-text"><span class="win-icon icon-games"></span>PC GAMES</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" class="btn-minimize"></button>
+        <button aria-label="Maximize" class="btn-maximize"></button>
+        <button aria-label="Close" class="btn-close"></button>
+      </div>
+    </div>
+    <div class="window-body has-space">
+      <div class="preview-content" style="text-align: center; padding: 20px 15px;">
+        <h1 style="font-size: 26px; margin: 0 0 12px 0; font-weight: bold; color: #000; letter-spacing: 0.5px;">PC GAMES</h1>
+        <p style="font-size: 14px; color: #222; margin: 0; line-height: 1.4; font-weight: 500;">Double-click the title bar or click the Maximize button [🗖] at the top right to open this window fully.</p>
+      </div>
+      <div class="full-content" style="padding: 15px;">
+        <style>
+          #gamesandshit img {
+            width: 200px;
+            height: 200px;
+            float: left;
+            border-radius: 15%;
+            }
+          #gamesandshit {
+            display: flex; /* Use flexbox for layout */
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            justify-content: center; /* Center items horizontally */
+            padding: 10px; /* Add padding around the container */
+          }
+        </style>
+    <center>
+        <h1> this only works on computers running windows</h1>
+        <p>unzip the file then open "HOW TO RUN GAME!!.txt"</p>
+        <br>
+        <div id="gamesandshit">
+    <a href="https://is.gd/VtUfB0"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/supermarket.png"></a>
+    <a href="https://is.gd/EqBUkM"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/theif2.png"></a>
+    <a href="https://is.gd/Dl1b6B"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/parkinglot.png"></a>
+    <a href="https://is.gd/pOO72G"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/startupcomp.png"></a>
+    <a href="https://is.gd/z2Fpan"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/stanly.png"></a>
+    <a href="https://is.gd/4NICVp"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/superliminal.png"></a>
+    <a href="https://is.gd/GleDDY"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/youtuberslife.png"></a>
+    <a href="https://is.gd/qsjZnP"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/houseflipper.png"></a>
+    <a href="https://is.gd/d72Bt8"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/randy.png"></a>
+    <a href="https://is.gd/0czi77"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/theif.png"></a>
+    <a href="https://is.gd/t9MiPr"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/hydroneer.png"></a>
+    <a href="https://is.gd/dcQJ4y"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/minecraft.png"></a>
+    <a href="https://is.gd/hCfipR"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/tcgcardshop.png"></a>
+    <a href="https://is.gd/uca5DR"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/stardewvally.png"></a>
+    <a href="https://is.gd/a4FvQg"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/subnautica.png"></a>
+    <a href="https://is.gd/NgHsbM"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/portal.png"></a>
+    <a href="https://is.gd/bYp2IY"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/portal2.png"></a>
+    <a href="https://is.gd/ViKMfw"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/powerwashsim.png"></a>
+    <a href="https://is.gd/AyRalw"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/storeagehunt.png"></a>
+    <a href="https://is.gd/wOHKFp"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/keeptalking.png"></a>
+    <a href="https://is.gd/lGOTdC"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/agadah.png"></a>
+    <a href="https://is.gd/QS5vRZ"><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/gassim.png"></a>
+    <a href="https://is.gd/WY1VXl "><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/ss.png"></a>
+    <a href="https://is.gd/8oJjvi "><img src="https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games-assets@f676b692fedce9fd7b52b775a32552515d848413/pc-game-images/streamlife2.png"></a>
+    </div>
+        <p>i know this looks like shit ill fix it later</p>
+    </center>
+      </div>
+    </div>
+  </div>
+
+  <!-- all of the old games are here and the images are streched PLZ FIX -->
+  <div class="window glass active" id="win-games">
+    <div class="title-bar">
+      <div class="title-bar-text"><span class="win-icon icon-games"></span>GAMES</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" class="btn-minimize"></button>
+        <button aria-label="Maximize" class="btn-maximize"></button>
+        <button aria-label="Close" class="btn-close"></button>
+      </div>
+    </div>
+    <div class="window-body has-space">
+      <div class="preview-content" style="text-align: center; padding: 20px 15px;">
+        <h1 style="font-size: 26px; margin: 0 0 12px 0; font-weight: bold; color: #000; letter-spacing: 0.5px;">GAMES</h1>
+        <p style="font-size: 14px; color: #222; margin: 0; line-height: 1.4; font-weight: 500;">Double-click the title bar or click the Maximize button [🗖] at the top right to open this window fully.</p>
+      </div>
+      <div class="full-content" style="padding: 15px;">
+        <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins, sans-serif;
+  background: #000;
+  overflow-x: hidden;
+}
+
+/* ===== Loader ===== */
+#widget-global-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  color: #fff;
+}
+.widget-spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: #3498db;
+  animation: 0.8s linear infinite widget-spin;
+  margin-bottom: 20px;
+}
+@keyframes widget-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== Games view ===== */
+
+.widget-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.widget-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #fff, #aaa);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.widget-version {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.widget-search {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 1.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  outline: 0;
+  display: block;
+}
+.widget-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+.widget-card {
+  background: transparent !important;
+  border-radius: 15px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  display: block;
+  transition: transform 0.3s;
+}
+.widget-card:hover {
+  transform: translateY(-5px);
+  border: 1px solid #948d8d;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.4);
+}
+.widget-img {
+  background: transparent !important;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+.widget-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0) 90%);
+  pointer-events: none;
+}
+.widget-name {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+}
+#game-empty {
+  display: none;
+  text-align: center;
+  color: #888;
+}
+</style>
+  </head>
+  <body>
+    <div id="widget-global-loader">
+      <div class="widget-spinner"></div>
+      <div id="loader-msg">Fetching Latest Game Data...</div>
+    </div>
+    <div id="view-games">
+      <div class="widget-header">
+        <h1 class="widget-title">Bazinga Games <span id="games-ver" class="widget-version" style="font-size:1rem; margin-left:10px;">...</span></h1>
+        <input id="game-search" class="widget-search" type="text" placeholder="Search games…">
+      </div>
+      <div id="game-grid" class="widget-grid"></div>
+      <div id="game-empty">No games found</div>
+    </div>
+<script>
+  const ts = () => Date.now();
+
+  async function fetchVersion() {
+    try {
+      const vRes = await fetch(`https://gist.githubusercontent.com/Dave-031/28e04705e41bba73ce058f9f8b4ae75f/raw/version.json?t=${ts()}`);
+      const vData = await vRes.json();
+      document.getElementById('games-ver').textContent = `Version: ${vData.version}`;
+    } catch (e) { console.error("Version fetch failed", e); }
+  }
+
+  /* ===== GAMES LOGIC ===== */
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        if (!img.src) {
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+        }
+        observer.unobserve(img);
+      }
+    });
+  }, { rootMargin: '150px' });
+
+  let gameData = [];
+  async function initGames() {
+    const grid = document.getElementById('game-grid');
+    const empty = document.getElementById('game-empty');
+    const ZONES_URL = 'https://gist.githubusercontent.com/Dave-031/bb96a99fc2db2f13aa07d14802015431/raw/zones.json';
+    const COVER_URL = 'https://cdn.jsdelivr.net/gh/Dave-031/covers@latest/';
+
+    try {
+      const res = await fetch(`${ZONES_URL}?t=${ts()}`);
+      gameData = await res.json();
+      renderGames(gameData);
+    } catch (e) { console.error(e); }
+
+    function renderGames(arr) {
+      grid.innerHTML = '';
+      empty.style.display = arr.length ? 'none' : 'block';
+      arr.forEach(z => {
+        const card = document.createElement('div');
+        card.className = 'widget-card';
+        const cover = z.cover ? (z.cover.includes('{COVER_URL}') ? z.cover.replace('{COVER_URL}', COVER_URL) : z.cover) : '';
+        card.innerHTML = `<img class="widget-img lazy-img" data-src="${cover}"><div class="widget-info"><div class="widget-name">${z.name}</div></div>`;
+        card.onclick = () => launchGame(z);
+        grid.appendChild(card);
+        imageObserver.observe(card.querySelector('.lazy-img'));
+      });
+    }
+
+    async function launchGame(z) {
+      const loader = document.getElementById('widget-global-loader');
+      loader.style.display = 'flex';
+      try {
+        const freshRes = await fetch(`${ZONES_URL}?t=${ts()}`);
+        const freshData = await freshRes.json();
+        const current = freshData.find(item => item.name === z.name);
+        const commit = (current && current.LatestCommitID) ? current.LatestCommitID : 'main';
+        const finalUrl = `https://cdn.jsdelivr.net/gh/Dave-031/bazinga-games@${commit}/single-html/${encodeURIComponent(z.name.trim())}.html`;
+        const gameReq = await fetch(finalUrl);
+        const html = await gameReq.text();
+        const t = window.open('about:blank', '_blank');
+        t.document.write(html);
+        t.document.close();
+      } catch (e) { alert('Failed to load.'); }
+      loader.style.display = 'none';
+    }
+
+    document.getElementById('game-search').oninput = (e) => {
+      const term = e.target.value.toLowerCase();
+      renderGames(gameData.filter(g => g.name.toLowerCase().includes(term)));
+    };
+  }
+
+  /* ===== STARTUP ===== */
+  window.onload = () => {
+    fetchVersion();
+    initGames();
+  };
+</script>
+  </body>
+</html>
+      </div>
+    </div>
+  </div>
+
+  <div class="window glass active" id="win-settings">
+    <div class="title-bar">
+      <div class="title-bar-text"><span class="win-icon icon-settings"></span>SETTINGS</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" class="btn-minimize"></button>
+        <button aria-label="Maximize" class="btn-maximize"></button>
+        <button aria-label="Close" class="btn-close"></button>
+      </div>
+    </div>
+    <div class="window-body has-space" style="padding: 12px; box-sizing: border-box;">
+        <div class="preview-content" style="text-align: center; padding: 10px 8px;">
+          <h1 style="font-size: 26px; margin: 0 0 8px 0; font-weight: bold; color: #000; letter-spacing: 0.5px;">SETTINGS</h1>
+          <p style="font-size: 14px; color: #222; margin: 0; line-height: 1.4; font-weight: 500;">Double-click the title bar or click the Maximize button [🗖] at the top right to open this window fully.</p>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 10px;">
+            <label for="quick-theme-select" style="font-size: 16px; font-weight: bold; color: #000;">Quick Settings</label>
+            <label for="quick-theme-select" style="font-size: 12px; font-weight: bold; color: #000;">Theme</label>
+            <select id="quick-theme-select" style="width: 100%; max-width: 180px; padding: 4px; font-size: 12px;">
+              <option value="https://unpkg.com/98.css">Windows 98</option>
+              <option value="https://unpkg.com/xp.css">Windows XP</option>
+              <option value="https://unpkg.com/7.css" selected>Windows 7</option>
+            </select>
+          </div>
+        </div>
+        <div class="full-content" style="padding: 0;">
+          <h1 style="margin-top: 0;">System Configurations</h1>
+          <p style="font-size: 12px; margin-bottom: 10px;">Themes, wallpapers, and behavior all save automatically in your browser.</p>
+          <fieldset style="border: 2px solid #808080; padding: 10px;">
+            <legend>Theme & Wallpaper</legend>
+            <div style="margin-bottom: 6px; font-size: 12px;">Select active system engine:</div>
+            <div style="margin-bottom: 4px; font-size: 12px;">
+              <input id="theme-win98" type="radio" name="theme-selection-group" value="https://unpkg.com/98.css">
+              <label for="theme-win98">Windows 98</label>
+            </div>
+            <div style="margin-bottom: 4px; font-size: 12px;">
+              <input id="theme-winxp" type="radio" name="theme-selection-group" value="https://unpkg.com/xp.css">
+              <label for="theme-winxp">Windows XP</label>
+            </div>
+            <div style="margin-bottom: 4px; font-size: 12px;">
+              <input id="theme-win7" type="radio" name="theme-selection-group" value="https://unpkg.com/7.css" checked>
+              <label for="theme-win7">Windows 7</label>
+            </div>
+          </fieldset>
+
+          <fieldset style="border: 2px solid #808080; padding: 10px; margin-top: 10px;">
+            <legend>Custom Backgrounds</legend>
+            <div style="font-size: 12px; margin-bottom: 8px;">Upload a different background image for each theme. These are saved in this browser.</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+                  <span style="font-size: 12px; font-weight: bold;">Windows 98</span>
+                  <div style="display: flex; gap: 4px;">
+                    <button type="button" class="upload-tray-btn" data-theme="https://unpkg.com/98.css">Upload</button>
+                    <button type="button" class="revert-bg-btn" data-theme="https://unpkg.com/98.css" style="padding: 0 4px; font-size: 11px; background: #c0c0c0; border: 2px solid #808080; color: #000; cursor: pointer;">Revert</button>
+                  </div>
+                </div>
+                <input type="file" accept="image/*" class="theme-bg-input" data-theme="https://unpkg.com/98.css" style="display: none;">
+                <div class="theme-bg-status" data-theme="https://unpkg.com/98.css" style="font-size: 11px; color: #444;">Using default wallpaper</div>
+                <img class="theme-bg-preview" data-theme="https://unpkg.com/98.css" alt="Windows 98 wallpaper preview" style="display: none; width: 100%; max-height: 90px; object-fit: cover; border: 1px solid #808080;">
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+                  <span style="font-size: 12px; font-weight: bold;">Windows XP</span>
+                  <div style="display: flex; gap: 4px;">
+                    <button type="button" class="upload-tray-btn" data-theme="https://unpkg.com/xp.css">Upload</button>
+                    <button type="button" class="revert-bg-btn" data-theme="https://unpkg.com/xp.css" style="padding: 0 4px; font-size: 11px; background: #c0c0c0; border: 2px solid #808080; color: #000; cursor: pointer;">Revert</button>
+                  </div>
+                </div>
+                <input type="file" accept="image/*" class="theme-bg-input" data-theme="https://unpkg.com/xp.css" style="display: none;">
+                <div class="theme-bg-status" data-theme="https://unpkg.com/xp.css" style="font-size: 11px; color: #444;">Using default wallpaper</div>
+                <img class="theme-bg-preview" data-theme="https://unpkg.com/xp.css" alt="Windows XP wallpaper preview" style="display: none; width: 100%; max-height: 90px; object-fit: cover; border: 1px solid #808080;">
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+                  <span style="font-size: 12px; font-weight: bold;">Windows 7</span>
+                  <div style="display: flex; gap: 4px;">
+                    <button type="button" class="upload-tray-btn" data-theme="https://unpkg.com/7.css">Upload</button>
+                    <button type="button" class="revert-bg-btn" data-theme="https://unpkg.com/7.css" style="padding: 0 4px; font-size: 11px; background: #c0c0c0; border: 2px solid #808080; color: #000; cursor: pointer;">Revert</button>
+                  </div>
+                </div>
+                <input type="file" accept="image/*" class="theme-bg-input" data-theme="https://unpkg.com/7.css" style="display: none;">
+                <div class="theme-bg-status" data-theme="https://unpkg.com/7.css" style="font-size: 11px; color: #444;">Using default wallpaper</div>
+                <img class="theme-bg-preview" data-theme="https://unpkg.com/7.css" alt="Windows 7 wallpaper preview" style="display: none; width: 100%; max-height: 90px; object-fit: cover; border: 1px solid #808080;">
+              </div>
+            </div>
+          </fieldset>
+
+<fieldset style="border: 2px solid #808080; padding: 10px; margin-top: 10px;">
+            <legend>Behavior</legend>
+            
+            <label for="show-clock-toggle" style="display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: bold; cursor: pointer; flex-wrap: nowrap; gap: 25px;">
+              <span style="display: block;">Show taskbar clock</span>
+              <input id="show-clock-toggle" type="checkbox" checked>
+            </label>
+            <!--
+            <label for="show-cat-toggle" style="display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: bold; cursor: pointer; flex-wrap: nowrap; gap: 25px; margin-top: 10px;">
+              <span style="display: block;">Show taskbar cat</span>
+              <input id="show-cat-toggle" type="checkbox" checked>
+            </label>
+          -->
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: bold; margin-top: 10px;">
+              <span>Cat size scale</span>
+              <input id="cat-size-slider" type="range" min="0.5" max="2.5" step="0.1" value="1" style="width: 100px; cursor: pointer;">
+            </div>
+          </fieldset>
+        </div>
+    </div>
+  </div>
+
+  <div class="window glass active" id="win-reports">
+    <div class="title-bar">
+      <div class="title-bar-text"><span class="win-icon icon-reports"></span>REPORTS</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" class="btn-minimize"></button>
+        <button aria-label="Close" class="btn-close"></button>
+      </div>
+    </div>
+    <div class="window-body has-space" style="padding: 16px; box-sizing: border-box; overflow: hidden;">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <fieldset style="border: 2px solid #808080; padding: 16px; margin: 0;">
+            <legend style="font-weight: bold; color: #000; font-size: 15px;">Report a Broken Game</legend>
+            
+            <p style="margin: 0 0 14px 0; color: #111; font-size: 13.5px; line-height: 1.5; font-weight: 500;">
+              If a title fails to load or has execution bugs, submit it below.
+            </p>
+            
+            <div class="field-row" style="margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 6px;">
+              <label for="broken-game-name" style="color: #000; font-weight: bold; font-size: 14px;">Game Name:</label>
+              <input id="broken-game-name" type="text" maxlength="20" style="width: 100%; box-sizing: border-box; padding: 6px; font-size: 14px; font-family: sans-serif;" placeholder="e.g. Space Invaders">
+              <span style="font-size: 11px; color: #444; font-weight: 500; margin-top: 3px;">max 20 characters</span>
+            </div>
+          </fieldset>
+          
+          <div style="display: flex; justify-content: flex-end;">
+            <button style="padding: 8px 24px; cursor: pointer; font-size: 13px; font-weight: bold;" onclick="const val = document.getElementById('broken-game-name').value; if(val.trim()) { alert('Report submitted for: ' + val); document.getElementById('broken-game-name').value = ''; } else { alert('Please enter a game name.'); }">Submit</button>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="window glass active" id="win-recommends">
+    <div class="title-bar">
+      <div class="title-bar-text"><span class="win-icon icon-recommend"></span>RECOMMEND</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" class="btn-minimize"></button>
+        <button aria-label="Close" class="btn-close"></button>
+      </div>
+    </div>
+    <div class="window-body has-space" style="padding: 16px; box-sizing: border-box; overflow: hidden;">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <fieldset style="border: 2px solid #808080; padding: 16px; margin: 0;">
+            <legend style="font-weight: bold; color: #000; font-size: 15px;">Recommend a Game</legend>
+            
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div class="field-row" style="margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+                <label for="rec-game-name" style="color: #000; font-weight: bold; font-size: 14px;">Game Name:</label>
+                <input id="rec-game-name" type="text" maxlength="20" style="width: 100%; box-sizing: border-box; padding: 6px; font-size: 14px; font-family: sans-serif;" placeholder="e.g. Sonic The Hedgehog">
+                <span style="font-size: 11px; color: #444; font-weight: 500; margin-top: 2px;">max 20 characters</span>
+              </div>
+
+              <div class="field-row" style="margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+                <label for="rec-game-reason" style="color: #000; font-weight: bold; font-size: 14px;">Why do you want this game?</label>
+                <input id="rec-game-reason" type="text" maxlength="80" style="width: 100%; box-sizing: border-box; padding: 6px; font-size: 14px; font-family: sans-serif;" placeholder="e.g. It is a classic platformer.">
+                <span style="font-size: 11px; color: #444; font-weight: 500; margin-top: 2px;">max 80 characters</span>
+              </div>
+            </div>
+          </fieldset>
+          
+          <div style="display: flex; justify-content: flex-end;">
+            <button style="padding: 8px 24px; cursor: pointer; font-size: 13px; font-weight: bold;" onclick="
+              const nameVal = document.getElementById('rec-game-name').value;
+              const reasonVal = document.getElementById('rec-game-reason').value;
+              if(nameVal.trim() && reasonVal.trim()) { 
+                alert('Recommendation submitted for: ' + nameVal); 
+                document.getElementById('rec-game-name').value = ''; 
+                document.getElementById('rec-game-reason').value = ''; 
+              } else { 
+                alert('Please fill out both text fields before submitting.'); 
+              }
+            ">Submit</button>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="window glass active" id="win-changelogs">
+    <div class="title-bar">
+      <div class="title-bar-text"><span class="win-icon icon-changelogs"></span>CHANGELOGS</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize" class="btn-minimize"></button>
+        <button aria-label="Maximize" class="btn-maximize"></button>
+        <button aria-label="Close" class="btn-close"></button>
+      </div>
+    </div>
+    <div class="window-body has-space" style="padding: 15px; box-sizing: border-box;">
+      <div class="preview-content" style="text-align: center; padding: 5px 15px;">
+        <h1 style="font-size: 26px; margin: 0 0 12px 0; font-weight: bold; color: #000; letter-spacing: 0.5px;">CHANGELOGS</h1>
+        <p style="font-size: 14px; color: #222; margin: 0; line-height: 1.4; font-weight: 500;">Double-click the title bar or click the Maximize button [🗖] at the top right to open this window fully.</p>
+      </div>
+        <div class="full-content" id="changelogs-full-content" style="padding: 5px 0; height: 100%; box-sizing: border-box;">
+          <h1 style="margin: 0 0 10px 0; font-size: 34px; font-weight: bold; letter-spacing: 1px; text-align: center;">CHANGELO<a href="https://script.google.com/macros/s/AKfycbxceAWXPWGSJq2oMXvAP0v_yHXQEk9lBGDhDKueulyQxgJ1ahNan984GwxvE6mt5S-i/exec" target="_blank" style="color: inherit; text-decoration: none; cursor: pointer;">G</a>S</h1>
+          <div style="margin-bottom: 10px;">
+            <input type="text" id="changelog-search" placeholder="Search by version, date, or keyword..." style="width: 100%; box-sizing: border-box; padding: 6px 8px; font-size: 13px; font-family: sans-serif;">
+          </div>
+          <div id="changelog-status" style="font-size: 11px; color: #444; margin-bottom: 8px;">Loading changelogs…</div>
+          <div id="changelog-list" style="flex-grow: 1; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; align-content: start; padding-right: 4px;"></div>
+        </div>
+    </div>
+  </div>
+
+  <div id="taskbar">
+      <button id="start-btn">Start</button>
+      <button id="reorder-btn">Re-order Layout</button>
+      <div style="width: 1px; height: 28px; background: #808080; border-right: 1px solid #fff; margin: 0 4px;"></div>
+      <div id="taskbar-items-container" style="display: flex; gap: 4px; flex-grow: 1; height: 28px; align-items: center;"></div>
+      
+      <div class="taskbar-tray">
+          <div id="taskbar-clock">00:00 AM</div>
+          <button class="upload-tray-btn" onclick="document.getElementById('image-uploader').click()">Upload Image</button>
+          <input type="file" id="image-uploader" accept="image/*" multiple style="display: none;">
+      </div>
+
+      <div id="taskbar-cat" title="Drag me around!"></div>
+  </div>
+
+
+<script src="script.js"></script>
+
+<style>
+#login-gate{position:fixed;inset:0;z-index:2147483647;background:#000;}
+#login-gate iframe{width:100%;height:100%;border:0;display:block;}
+body.gs-locked > *:not(#login-gate){visibility:hidden !important;}
+body.gs-locked{overflow:hidden !important;}
+</style>
+</div>
+</body>
+</html>
